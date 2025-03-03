@@ -1,0 +1,259 @@
+<div class="card">
+    <div class="p-6">
+        <h2 class="text-xl font-semibold mb-3">Multi-LLM Pipeline Architecture</h2>
+        <p class="text-gray-700 mb-4">
+            Advanced AI-first development leverages specialized LLMs in a pipeline workflow, where each model performs a different task in sequence.
+            This approach maximizes both quality and efficiency compared to using a single model for everything.
+        </p>
+        
+        <div class="border rounded-lg p-5 bg-blue-50 mb-6">
+            <h3 class="text-xl font-semibold mb-3">LLM Pipeline Components</h3>
+            <div class="relative overflow-hidden">
+                <!-- Pipeline visualization -->
+                <div class="flex flex-col items-center mb-6">
+                    <div class="flex justify-center items-center w-full mb-3">
+                        <div class="bg-white p-3 rounded-lg border border-blue-200 w-64 text-center mr-2">
+                            <h4 class="font-medium text-lg mb-1">Prompt Engineer LLM</h4>
+                            <p class="text-sm text-gray-700">
+                                High-reasoning, general purpose model (Claude 3.7 Sonnet)
+                            </p>
+                        </div>
+                        <div class="text-blue-500">→</div>
+                    </div>
+                    <div class="flex justify-center items-center w-full mb-3">
+                        <div class="bg-white p-3 rounded-lg border border-blue-200 w-64 text-center mr-2">
+                            <h4 class="font-medium text-lg mb-1">Code Generator LLM</h4>
+                            <p class="text-sm text-gray-700">
+                                Specialized coding model (CodeLlama, Starcoder)
+                            </p>
+                        </div>
+                        <div class="text-blue-500">→</div>
+                    </div>
+                    <div class="flex justify-center items-center w-full mb-3">
+                        <div class="bg-white p-3 rounded-lg border border-blue-200 w-64 text-center mr-2">
+                            <h4 class="font-medium text-lg mb-1">Code Reviewer LLM</h4>
+                            <p class="text-sm text-gray-700">
+                                Security-focused model (Claude 3.5 Sonnet)
+                            </p>
+                        </div>
+                        <div class="text-blue-500">→</div>
+                    </div>
+                    <div class="flex justify-center items-center w-full">
+                        <div class="bg-white p-3 rounded-lg border border-blue-200 w-64 text-center">
+                            <h4 class="font-medium text-lg mb-1">Code Validator LLM</h4>
+                            <p class="text-sm text-gray-700">
+                                Large context model for system-wide analysis (GPT-4 Turbo)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pipeline description -->
+                <div class="space-y-4 mt-6">
+                    <div class="bg-white p-4 rounded-lg border border-blue-200">
+                        <h4 class="font-medium text-lg mb-2">1. Prompt Engineering Phase</h4>
+                        <p class="text-sm text-gray-700 mb-3">
+                            The first LLM transforms high-level user requirements into detailed, precise prompts optimized for code generation.
+                            It identifies ambiguities, adds necessary context, and structures the request for maximum coding success.
+                        </p>
+                        <div class="bg-gray-100 p-3 rounded text-sm font-mono whitespace-pre overflow-x-auto">
+// Input: "Create a login page with email validation"
+
+// Enhanced prompt:
+"Create a React component for a login form with the following:
+1. Email field with validation for correct email format
+2. Password field with minimum 8 characters
+3. Submit button that's disabled until valid inputs
+4. Error messages displayed below each field
+5. Loading state during submission
+6. Success state after login"</div>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg border border-blue-200">
+                        <h4 class="font-medium text-lg mb-2">2. Code Generation Phase</h4>
+                        <p class="text-sm text-gray-700 mb-3">
+                            A specialized coding model receives the enhanced prompt and generates high-quality implementation code.
+                            This model is optimized for programming tasks with extensive training on code repositories.
+                        </p>
+                        <div class="bg-gray-100 p-3 rounded text-sm font-mono text-gray-800 whitespace-pre overflow-x-auto">
+// Enhanced prompt from step 1 is sent to the coding model
+// Code is generated with detailed implementation
+// Example output excerpt:
+
+const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+  
+  // Additional implementation code...
+}</div>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg border border-blue-200">
+                        <h4 class="font-medium text-lg mb-2">3. Code Review Phase</h4>
+                        <p class="text-sm text-gray-700 mb-3">
+                            A security-focused model reviews the generated code for bugs, security vulnerabilities, and performance issues.
+                            It provides specific feedback and suggestions for improvement.
+                        </p>
+                        <div class="bg-gray-100 p-3 rounded text-sm font-mono whitespace-pre overflow-x-auto">
+// Review feedback:
+"1. Security issue: Form submission doesn't prevent default behavior
+2. UX issue: No visual feedback during loading state
+3. Accessibility issue: Missing aria-labels on form fields
+4. Best practice: Password validation should check for complexity
+5. Performance: Email validation could be debounced"</div>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg border border-blue-200">
+                        <h4 class="font-medium text-lg mb-2">4. System-Wide Validation Phase</h4>
+                        <p class="text-sm text-gray-700 mb-3">
+                            A large-context model analyzes the code within the broader system, ensuring proper integration with
+                            existing components, adherence to architectural patterns, and compatibility with the codebase.
+                        </p>
+                        <div class="bg-gray-100 p-3 rounded text-sm font-mono whitespace-pre overflow-x-auto">
+// System validation feedback:
+"Integration checks:
+1. Component correctly uses AuthContext from the existing auth system
+2. Styling follows the project's design system
+3. API call format matches backend expectations
+4. Error handling follows established patterns
+5. Component fits within the current routing structure"</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefits section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="border rounded-lg p-4 bg-white">
+                <h3 class="text-lg font-semibold mb-3">Key Benefits</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>Specialized Expertise:</strong> Each model focuses on what it does best</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>Optimized Resource Usage:</strong> Smaller, faster models where appropriate</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>Higher Quality Output:</strong> Multiple validation layers improve quality</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>Cleaner Prompts:</strong> Each stage has a clear, focused task</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="border rounded-lg p-4 bg-white">
+                <h3 class="text-lg font-semibold mb-3">Implementation Considerations</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span><strong>API Integration:</strong> Orchestration layer to manage model calls</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span><strong>Cost Management:</strong> Balance powerful vs. economical models</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span><strong>Error Handling:</strong> Robust handling of model failures</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span><strong>Human Feedback Loop:</strong> Define intervention points for humans</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Code example -->
+        <div class="border rounded-lg p-5 mb-6">
+            <h3 class="text-lg font-semibold mb-3">Implementation Example</h3>
+            <div class="bg-gray-800 text-white p-4 rounded text-sm font-mono whitespace-pre overflow-x-auto">
+// JavaScript example of a Multi-LLM pipeline orchestration
+
+async function multiLLMPipeline(userRequest) {
+  try {
+    // Step 1: Prompt Engineering with reasoning-focused model
+    const enhancedPrompt = await callLLM({
+      model: "claude-3-7-sonnet",
+      prompt: `Transform this user request into a detailed coding prompt:\n\n"${userRequest}"`,
+      temperature: 0.7
+    });
+    
+    // Step 2: Code Generation with specialized coding model
+    const generatedCode = await callLLM({
+      model: "code-llama-34b",
+      prompt: enhancedPrompt,
+      temperature: 0.2
+    });
+    
+    // Step 3: Code Review with security-focused model
+    const codeReview = await callLLM({
+      model: "claude-3-5-sonnet",
+      prompt: `Review this code for bugs, security issues, and improvements:\n\n${generatedCode}`,
+      temperature: 0.3
+    });
+    
+    // Step 4: System Integration validation with large-context model
+    const systemValidation = await callLLM({
+      model: "gpt-4-turbo",
+      prompt: `Analyze this code in the context of our system architecture:\n\n${generatedCode}\n\nEnsure it integrates properly with existing components and follows our patterns.`,
+      temperature: 0.2,
+      context: codebaseContext // Large system context
+    });
+    
+    // Return all results for human review
+    return {
+      enhancedPrompt,
+      generatedCode,
+      codeReview,
+      systemValidation
+    };
+  } catch (error) {
+    console.error("Pipeline error:", error);
+    return { error: error.message };
+  }
+}
+
+// Example usage
+const results = await multiLLMPipeline("Create a user profile page with edit functionality");
+console.log(results);</div>
+        </div>
+
+        <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded">
+            <p class="text-gray-800">
+                <strong>Key Insight:</strong> The Multi-LLM Pipeline leverages specialized models for each task, significantly improving quality over a single LLM approach. 
+                Each model's strengths are applied where they deliver the most value, creating a system greater than the sum of its parts.
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+/* TOC display fixes for navigation issues */
+
+/* Fix for TOC stacking on document view when navigating */
+.grid.grid-cols-1.md\:grid-cols-4.gap-6 {
+  display: grid !important;
+  grid-template-columns: 250px 1fr !important;
+}
+
+.md\:col-span-1 {
+  grid-column: 1 !important;
+  display: block !important;
+}
+
+.md\:col-span-3 {
+  grid-column: 2 !important;
+}
+
+/* Ensure TOC container displays properly */
+.toc-container {
+  position: relative !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow-y: visible !important;
+  margin-right: 1rem;
+  padding-right: 0.5rem;
+  padding-bottom: 2rem;
+  border-right: 1px solid #e5e7eb;
+}
+
+/* Dark theme adjustments */
+body.dark-theme .toc-container {
+  border-right-color: var(--border-color, #444444);
+}
+
+/* Ensure proper TOC height */
+#toc-container {
+  display: block !important;
+  height: auto !important;
+  min-height: 800px;
+}
+
+/* Fix for TOC links to ensure proper display */
+#toc-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Ensure markdown content takes full width */
+.markdown-content {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Fix for responsive layout */
+@media (max-width: 768px) {
+  .grid.grid-cols-1.md\:grid-cols-4.gap-6 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .md\:col-span-1 {
+    display: none !important; /* Hide TOC on mobile */
+  }
+  
+  .md\:col-span-3 {
+    grid-column: 1 !important;
+  }
+}

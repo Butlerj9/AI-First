@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-First Development Portal</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Mermaid JS -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    
+    <!-- Markdown Parser - Marked -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- Recharts and dependencies -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/prop-types/prop-types.min.js"></script>
+    <script src="https://unpkg.com/recharts@2.10.4/umd/Recharts.js"></script>
+    
+    <!-- D3.js for visualizations fallback -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <!-- Custom styles -->
+    <style>
+        /* Base styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Table of contents styles */
+        .toc-container {
+            position: relative; /* Changed from sticky to relative for better navigation */
+            top: 1rem;
+            height: auto; /* Changed from max-height for better display */
+            overflow-y: visible; /* Changed from auto to visible */
+            padding-right: 1rem;
+            border-right: 1px solid #e5e7eb;
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.25rem 0;
+            color: #4b5563;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .toc-link:hover {
+            color: #2563eb;
+        }
+        
+        .toc-link.active {
+            color: #2563eb;
+            font-weight: 600;
+        }
+        
+        .toc-link.level-3 {
+            padding-left: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Markdown content styles */
+        .markdown-content {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .markdown-content h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #1e40af;
+        }
+        
+        .markdown-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #1e40af;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .markdown-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #2563eb;
+        }
+        
+        .markdown-content h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #3b82f6;
+        }
+        
+        .markdown-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .markdown-content ul, .markdown-content ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        .markdown-content ul {
+            list-style-type: disc;
+        }
+        
+        .markdown-content ol {
+            list-style-type: decimal;
+        }
+        
+        .markdown-content li {
+            margin-bottom: 0.25rem;
+        }
+        
+        .markdown-content code {
+            background-color: #f3f4f6;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-family: Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            font-size: 0.875em;
+        }
+        
+        .markdown-content pre {
+            background-color: #f3f4f6;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+        
+        .markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        
+        .markdown-content th {
+            background-color: #f3f4f6;
+            padding: 0.5rem;
+            border: 1px solid #e5e7eb;
+            font-weight: 600;
+            text-align: left;
+        }
+        
+        .markdown-content td {
+            padding: 0.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .markdown-content blockquote {
+            border-left: 4px solid #e5e7eb;
+            padding-left: 1rem;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        
+        /* Tab styles */
+        .tab-button {
+            padding: 0.5rem 1rem;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .tab-button:hover {
+            color: #2563eb;
+        }
+        
+        .tab-button.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+        
+        /* Card styles */
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+        
+        /* Chart container styles */
+        .chart-container {
+            height: 300px;
+            margin-bottom: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Mermaid diagram styles */
+        .mermaid {
+            margin: 1rem 0;
+        }
+        
+        .mermaid svg {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .toc-container {
+                position: static;
+                max-height: none;
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* TOC navigation fix - ensures proper grid layout */
+        .grid.grid-cols-1.md\:grid-cols-4.gap-6 {
+            display: grid !important;
+            grid-template-columns: 250px 1fr !important;
+        }
+
+        .md\:col-span-1 {
+            grid-column: 1 !important;
+            display: block !important;
+        }
+
+        .md\:col-span-3 {
+            grid-column: 2 !important;
+        }
+    </style>
+    <style>
+        /* Workflow Comparison Diagram Styles */
+        .workflow-diagram {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .workflow-diagram:hover {
+            transform: scale(1.02);
+        }
+        
+        .workflow-container {
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: white;
+        }
+        
+        body.dark-theme .workflow-container {
+            background-color: #2a2a2a;
+        }
+        
+        /* Dual-LLM Strategy Additional Styles */
+        .llm-role-box {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            background-color: #f9fafb;
+            transition: all 0.2s ease;
+        }
+        
+        .llm-role-box:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-color: #d1d5db;
+        }
+        
+        body.dark-theme .llm-role-box {
+            background-color: #374151;
+            border-color: #4b5563;
+        }
+        
+        body.dark-theme .llm-role-box:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Code Example Enhancements */
+        .code-section {
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+        /* Key insight box enhancement */
+        .key-insight {
+            background-color: #fffbeb;
+            border: 1px solid #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin: 1.5rem 0;
+        }
+        
+        body.dark-theme .key-insight {
+            background-color: rgba(245, 158, 11, 0.1);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+    </style>
+    <!-- Dark Theme CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-theme.css') }}">
+    <!-- TOC Fixes CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toc-fixes.css') }}">
+    <link rel="stylesheet" href="/static/css/chart-overrides.css">
+</head>
+
+<body class="bg-gray-50">
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b">
+            <div class="container mx-auto px-4 py-6">
+                <h1 class="text-3xl font-bold text-blue-700">AI-First Development Portal</h1>
+                <p class="text-gray-600 mt-2">
+                    Exploring the transformative impact of AI-First methodologies on software development
+                </p>
+            </div>
+        </header>
+        
+        <!-- Navigation Tabs -->
+        <div class="bg-white border-b">
+            <div class="container mx-auto px-4">
+                <div class="flex space-x-2 tabs-container overflow-x-auto">
+		    <button id="tab-executive" class="tab-button" data-tab="executive">Executive Summary</button>
+                    <button id="tab-overview" class="tab-button active" data-tab="overview">Overview</button>
+                    <button id="tab-dashboard" class="tab-button" data-tab="dashboard">Dashboard</button>
+                    <button id="tab-implementation" class="tab-button" data-tab="implementation">Implementation</button>
+                    <button id="tab-comparison" class="tab-button" data-tab="comparison">Approach Comparison</button>
+                    <button id="tab-workflows" class="tab-button" data-tab="workflows">Workflow Diagrams</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main content -->
+        <main class="flex-grow container mx-auto px-4 py-8">
+            <!-- Tab content will be loaded here -->
+            <div id="tab-content" class="min-h-[400px]">
+                <!-- Content will be loaded dynamically -->
+                <div class="animate-pulse flex flex-col space-y-4">
+                    <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                    <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+                    <div class="h-4 bg-gray-200 rounded w-2/3"></div>
+                    <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="bg-white shadow-sm border-t mt-auto">
+            <div class="container mx-auto px-4 py-6">
+                <p class="text-gray-600 text-center">
+                    © 2025 AI-First Development Portal • A comprehensive resource for modern development methodologies
+                </p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Table of Contents Template -->
+    <template id="toc-template">
+        <div class="toc-container">
+            <h3 class="text-lg font-semibold mb-3">Table of Contents</h3>
+            <div id="toc-links" class="border-l pl-4">
+                <!-- TOC links will be added here -->
+            </div>
+        </div>
+    </template>
+    
+    <!-- Overview Tab Template -->
+    <template id="overview-template">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="md:col-span-1 hidden md:block">
+                <!-- Table of Contents will be loaded here -->
+                <div id="toc-container"></div>
+            </div>
+            <div class="md:col-span-3">
+                <div class="card">
+                    <div class="p-6">
+                        <h1 id="main-title" class="text-2xl font-bold text-blue-800 mb-4">AI-First Development: Why, How, and How Fast, Exactly?</h1>
+                        <div id="markdown-content" class="markdown-content">
+                            <!-- Markdown content will be loaded here -->
+                            <div class="animate-pulse flex flex-col space-y-4">
+                                <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                                <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+                                <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+                                <div class="h-4 bg-gray-200 rounded w-2/3"></div>
+                                <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <!-- Dashboard Tab Template -->
+    <template id="dashboard-template">
+        <div class="flex flex-col gap-6">
+            <div class="text-center mb-4">
+                <h1 class="text-2xl font-bold">AI-First Development Dashboard</h1>
+                <p class="text-lg text-gray-600">Key metrics and insights from AI-First workflows</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Development Speed Comparison -->
+                <div class="card">
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold mb-2">Development Speed Multiplier</h2>
+                        <div id="speed-chart" class="chart-container">
+                            <!-- Chart will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task Acceleration Factors -->
+                <div class="card">
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold mb-2">Task Acceleration Factors (Top 8)</h2>
+                        <div id="tasks-chart" class="chart-container">
+                            <!-- Chart will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Reduction Through Iterations -->
+                <div class="card">
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold mb-2">Error Reduction Through Iterations</h2>
+                        <div id="error-chart" class="chart-container">
+                            <!-- Chart will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Developer Time Allocation -->
+                <div class="card">
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold mb-2">Developer Time Allocation</h2>
+                        <div id="time-chart" class="chart-container">
+                            <!-- Chart will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROI data -->
+            <div class="card">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold mb-2">Return on AI Development Investment</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div id="roi-chart" class="chart-container">
+                            <!-- Chart will be rendered here -->
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold mb-2">Key ROI Factors:</h3>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li>Tool costs (~$10/developer/month) are modest compared to productivity gains</li>
+                                <li>Training investment typically takes days to weeks, not months</li>
+                                <li>Highest ROI when time-to-market is critical or development talent is scarce</li>
+                                <li>Projects with substantial boilerplate or repetitive logic see greater returns</li>
+                                <li>Risk-adjusted ROI remains strongly positive in most scenarios</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <!-- Implementation Tab Template -->
+<template id="implementation-template">
+    <div class="flex flex-col gap-6">
+        <div class="text-center mb-4">
+            <h1 class="text-2xl font-bold">AI-First Implementation Strategies</h1>
+            <p class="text-lg text-gray-600">Practical techniques for maximizing AI productivity in development</p>
+        </div>
+
+        <!-- Generation-Debugging Batch Method -->
+        <div class="card">
+            <div class="p-6">
+                <h2 class="text-xl font-semibold mb-3">The Generation-Debugging Batch Method</h2>
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-4">
+                        One of the most effective AI-first methodologies is the <strong>Generation-Debugging Batch Method</strong>, 
+                        which separates code creation and refinement into distinct phases, typically following a two-day cycle.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border rounded-lg p-4 bg-blue-50">
+                        <h3 class="text-xl font-semibold mb-3">Day 1: Maximum Velocity Code Generation</h3>
+                        <ul class="space-y-4">
+                            <li class="border-b border-blue-100 pb-3">
+                                <div class="font-medium text-lg">Architectural Documentation</div>
+                                <div class="text-gray-700 mb-1">Provide rich architectural context to the AI (design docs, module specs, etc.)</div>
+                                <div class="text-sm text-blue-700"><strong>Benefit:</strong> AI doesn't waste time guessing how components fit together</div>
+                            </li>
+                            <li class="border-b border-blue-100 pb-3">
+                                <div class="font-medium text-lg">Feature Parallelization</div>
+                                <div class="text-gray-700 mb-1">Run multiple AI instances for different features simultaneously</div>
+                                <div class="text-sm text-blue-700"><strong>Benefit:</strong> Multiplies throughput by the number of parallel prompts</div>
+                            </li>
+                            <li class="border-b border-blue-100 pb-3">
+                                <div class="font-medium text-lg">Optimized Prompt Engineering</div>
+                                <div class="text-gray-700 mb-1">Create specific, unambiguous prompts with examples and clear scope</div>
+                                <div class="text-sm text-blue-700"><strong>Benefit:</strong> Gets clean results on the first try, reducing later debugging needs</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="border rounded-lg p-4 bg-blue-50">
+                        <h3 class="text-xl font-semibold mb-3">Day 2: Systematic Debugging Approaches</h3>
+                        <ul class="space-y-4">
+                            <li class="border-b border-blue-100 pb-3">
+                                <div class="font-medium text-lg">Modular Testing Framework</div>
+                                <div class="text-gray-700 mb-1">Create isolated, targeted tests that clearly identify failure sources</div>
+                                <div class="text-sm text-blue-700"><strong>Benefit:</strong> AI can more effectively fix errors when given clear test feedback</div>
+                            </li>
+                            <li class="border-b border-blue-100 pb-3">
+                                <div class="font-medium text-lg">Error Pattern Recognition</div>
+                                <div class="text-gray-700 mb-1">Catalog common AI mistakes and feed patterns back for fixes</div>
+                                <div class="text-sm text-blue-700"><strong>Benefit:</strong> Creates a learning loop where the AI becomes more adept at fixing its own mistakes</div>
+                            </li>
+                            <li class="border-b border-blue-100 pb-3">
+                                <div class="font-medium text-lg">Batch Debugging Optimization</div>
+                                <div class="text-gray-700 mb-1">Group related errors and address them together rather than one by one</div>
+                                <div class="text-sm text-blue-700"><strong>Benefit:</strong> More efficient use of both AI and human debugging time</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded">
+                    <p class="text-gray-800">
+                        <strong>Key Insight:</strong> Research shows this approach yields better results compared to trying to get code perfect the first time. 
+                        The 4-5 iteration sweet spot provides optimal results before human intervention.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workflow Comparison Card -->
+        <div class="card">
+            <div class="p-6">
+                <h2 class="text-xl font-semibold mb-3">AI-First Workflow Comparison</h2>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    AI-first development fundamentally transforms how software is created, enabling parallel exploration of multiple architectures and implementations simultaneously. This dramatically increases productivity while providing higher quality solutions.
+                </p>
+                
+                <!-- SVG Container with Proper Styling -->
+                <div class="mb-8 overflow-x-auto bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                    <div class="w-full flex justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700">
+                            <!-- Background - lighter to support dark mode -->
+                            <rect width="900" height="700" fill="#f8fafc" class="diagram-bg" />
+                            
+                            <!-- Title -->
+                            <text x="450" y="40" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#1e40af" class="diagram-title">Traditional vs. AI-First Development: Productivity Comparison</text>
+                            
+                            <!-- Dividing line -->
+                            <line x1="450" y1="70" x2="450" y2="450" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,5" />
+                            
+                            <!-- Traditional approach (left side) -->
+                            <text x="225" y="80" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#334155" class="diagram-heading">Traditional Approach</text>
+                            <text x="225" y="105" font-family="Arial" font-size="14" text-anchor="middle" fill="#64748b" class="diagram-subheading">Sequential, Single-Path Exploration</text>
+                            
+                            <!-- Traditional approach flow - Wider boxes -->
+                            <rect x="105" y="130" width="240" height="50" rx="10" ry="10" fill="#60a5fa" class="diagram-box" />
+                            <text x="225" y="160" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Requirements Analysis</text>
+                            
+                            <!-- Arrow down -->
+                            <polygon points="225,190 215,180 235,180" fill="#94a3b8" class="diagram-arrow" />
+                            <line x1="225" y1="180" x2="225" y2="210" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <rect x="105" y="210" width="240" height="50" rx="10" ry="10" fill="#60a5fa" class="diagram-box" />
+                            <text x="225" y="240" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Architecture Design</text>
+                            
+                            <!-- Arrow down -->
+                            <polygon points="225,270 215,260 235,260" fill="#94a3b8" class="diagram-arrow" />
+                            <line x1="225" y1="260" x2="225" y2="290" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <rect x="105" y="290" width="240" height="50" rx="10" ry="10" fill="#60a5fa" class="diagram-box" />
+                            <text x="225" y="320" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Implementation</text>
+                            
+                            <!-- Arrow down -->
+                            <polygon points="225,350 215,340 235,340" fill="#94a3b8" class="diagram-arrow" />
+                            <line x1="225" y1="340" x2="225" y2="370" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <rect x="105" y="370" width="240" height="50" rx="10" ry="10" fill="#60a5fa" class="diagram-box" />
+                            <text x="225" y="400" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Testing &amp; Validation</text>
+                            
+                            <!-- Arrow down -->
+                            <polygon points="225,430 215,420 235,420" fill="#94a3b8" class="diagram-arrow" />
+                            <line x1="225" y1="420" x2="225" y2="450" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <rect x="105" y="450" width="240" height="50" rx="10" ry="10" fill="#60a5fa" class="diagram-box" />
+                            <text x="225" y="480" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Final Solution</text>
+                            
+                            <!-- Traditional description - IMPROVED BOX - Extended to almost touch the middle -->
+                            <rect x="50" y="510" width="390" height="40" rx="5" ry="5" fill="#f0f9ff" stroke="#60a5fa" stroke-width="2" class="diagram-info-box" />
+                            <text x="245" y="535" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#1e40af" class="diagram-info-text">Limited bandwidth restricts iterations and exploration</text>
+                            
+                            <!-- AI-First approach (right side) -->
+                            <text x="675" y="80" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#334155" class="diagram-heading">AI-First Approach</text>
+                            <text x="675" y="105" font-family="Arial" font-size="14" text-anchor="middle" fill="#64748b" class="diagram-subheading">Parallel, Multi-Path Exploration</text>
+                            
+                            <!-- AI-First approach - Requirements Analysis - Wider boxes -->
+                            <rect x="565" y="130" width="220" height="50" rx="10" ry="10" fill="#3b82f6" class="diagram-box" />
+                            <text x="675" y="160" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Requirements Analysis</text>
+                            
+                            <!-- Branch out to three architecture approaches -->
+                            <line x1="675" y1="180" x2="675" y2="195" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            <line x1="675" y1="195" x2="525" y2="195" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            <line x1="675" y1="195" x2="825" y2="195" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <polygon points="525,210 515,200 535,200" fill="#94a3b8" class="diagram-arrow" />
+                            <line x1="525" y1="195" x2="525" y2="210" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <polygon points="675,210 665,200 685,200" fill="#94a3b8" class="diagram-arrow" />
+                            <line x1="675" y1="195" x2="675" y2="210" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <polygon points="825,210 815,200 835,200" fill="#94a3b8" class="diagram-arrow" />
+                            <line x1="825" y1="195" x2="825" y2="210" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <!-- Architecture options - Wider boxes -->
+                            <rect x="455" y="210" width="140" height="50" rx="10" ry="10" fill="#3b82f6" class="diagram-box" />
+                            <text x="525" y="233" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Microservice</text>
+                            <text x="525" y="248" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Architecture</text>
+                            
+                            <rect x="605" y="210" width="140" height="50" rx="10" ry="10" fill="#3b82f6" class="diagram-box" />
+                            <text x="675" y="233" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Serverless</text>
+                            <text x="675" y="248" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Approach</text>
+                            
+                            <rect x="755" y="210" width="140" height="50" rx="10" ry="10" fill="#3b82f6" class="diagram-box" />
+                            <text x="825" y="233" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Monolith with</text>
+                            <text x="825" y="248" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">CQRS Pattern</text>
+                            
+                            <!-- Arrows to implementation -->
+                            <polygon points="525,290 515,280 535,280" fill="#94a3b8" class="diagram-arrow" />
+                            <line x1="525" y1="260" x2="525" y2="290" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <polygon points="675,290 665,280 685,280" fill="#94a3b8" class="diagram-arrow" />
+                            <line x1="675" y1="260" x2="675" y2="290" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <polygon points="825,290 815,280 835,280" fill="#94a3b8" class="diagram-arrow" />
+                            <line x1="825" y1="260" x2="825" y2="290" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <!-- Implementations - Wider boxes -->
+                            <rect x="455" y="290" width="140" height="50" rx="10" ry="10" fill="#3b82f6" class="diagram-box" />
+                            <text x="525" y="320" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Implementation A</text>
+                            
+                            <rect x="605" y="290" width="140" height="50" rx="10" ry="10" fill="#3b82f6" class="diagram-box" />
+                            <text x="675" y="320" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Implementation B</text>
+                            
+                            <rect x="755" y="290" width="140" height="50" rx="10" ry="10" fill="#3b82f6" class="diagram-box" />
+                            <text x="825" y="320" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Implementation C</text>
+                            
+                            <!-- Arrows to testing -->
+                            <polygon points="525,370 515,360 535,360" fill="#94a3b8" class="diagram-arrow" />
+                            <line x1="525" y1="340" x2="525" y2="370" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <polygon points="675,370 665,360 685,360" fill="#94a3b8" class="diagram-arrow" />
+                            <line x1="675" y1="340" x2="675" y2="370" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <polygon points="825,370 815,360 835,360" fill="#94a3b8" class="diagram-arrow" />
+                            <line x1="825" y1="340" x2="825" y2="370" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <!-- Testing & Validation - Wider boxes -->
+                            <rect x="455" y="370" width="140" height="50" rx="10" ry="10" fill="#3b82f6" class="diagram-box" />
+                            <text x="525" y="395" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Comprehensive</text>
+                            <text x="525" y="410" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Testing A</text>
+                            
+                            <rect x="605" y="370" width="140" height="50" rx="10" ry="10" fill="#3b82f6" class="diagram-box" />
+                            <text x="675" y="395" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Comprehensive</text>
+                            <text x="675" y="410" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Testing B</text>
+                            
+                            <rect x="755" y="370" width="140" height="50" rx="10" ry="10" fill="#3b82f6" class="diagram-box" />
+                            <text x="825" y="395" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Comprehensive</text>
+                            <text x="825" y="410" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Testing C</text>
+                            
+                            <!-- Converge to evaluation -->
+                            <line x1="525" y1="420" x2="525" y2="435" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            <line x1="675" y1="420" x2="675" y2="435" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            <line x1="825" y1="420" x2="825" y2="435" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            
+                            <line x1="525" y1="435" x2="675" y2="435" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            <line x1="675" y1="435" x2="825" y2="435" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            <line x1="675" y1="435" x2="675" y2="450" stroke="#94a3b8" stroke-width="2" class="diagram-arrow-line" />
+                            <polygon points="675,450 665,440 685,440" fill="#94a3b8" class="diagram-arrow" />
+                            
+                            <!-- Solution selection - Wider box -->
+                            <rect x="565" y="450" width="220" height="50" rx="10" ry="10" fill="#3b82f6" class="diagram-box" />
+                            <text x="675" y="480" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white" class="diagram-box-text">Optimal Solution Selection</text>
+                            
+                            <!-- AI-First description - IMPROVED BOX - Extended to almost touch the middle, making it even wider -->
+                            <rect x="460" y="510" width="390" height="40" rx="5" ry="5" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" class="diagram-info-box" />
+                            <text x="655" y="535" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#1e40af" class="diagram-info-text">Bandwidth enables parallel exploration & rapid refactoring</text>
+                            
+                            <!-- Horizontal rule to separate sections -->
+                            <line x1="50" y1="570" x2="850" y2="570" stroke="#94a3b8" stroke-width="1" />
+                            
+                            <!-- Team Productivity Comparison - Improved with better contrast -->
+                            <rect x="50" y="585" width="800" height="115" rx="10" ry="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" class="diagram-info-box" />
+                            <text x="450" y="610" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#1e40af" class="diagram-info-title">Developer Productivity Comparison</text>
+                            
+                            <!-- Traditional Productivity - Better contrast -->
+                            <rect x="100" y="630" width="300" height="60" rx="5" ry="5" fill="#dbeafe" class="diagram-data-box" />
+                            <text x="250" y="650" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e40af" class="diagram-data-title">Traditional Development</text>
+                            <text x="250" y="675" font-family="Arial" font-size="14" text-anchor="middle" fill="#334155" class="diagram-data-text">750 LOC/day (6k-12k average raw speed)</text>
+                            
+                            <!-- AI-First Productivity - Better contrast -->
+                            <rect x="500" y="630" width="300" height="60" rx="5" ry="5" fill="#bfdbfe" class="diagram-data-box" />
+                            <text x="650" y="650" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e40af" class="diagram-data-title">AI-First Development</text>
+                            <text x="650" y="675" font-family="Arial" font-size="14" text-anchor="middle" fill="#334155" class="diagram-data-text">12k LOC/day (300k LOC/day average raw speed)</text>
+                            
+                            <!-- Comparison arrow - More visible with SMALLER stacked text in GREEN moved UP -->
+                            <line x1="410" y1="660" x2="490" y2="660" stroke="#16a34a" stroke-width="3" class="diagram-arrow-special" />
+                            <polygon points="490,660 480,655 480,665" fill="#16a34a" class="diagram-arrow-special" />
+                            <text x="450" y="635" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#16a34a" class="diagram-data-special">16× Productivity</text>
+                            <text x="450" y="653" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#16a34a" class="diagram-data-special">for Final Code</text>
+                            
+                            <!-- Add CSS classes for dark mode compatibility -->
+                            <style>
+                              @media (prefers-color-scheme: dark) {
+                                .diagram-bg { fill: #1a1a2e; }
+                                .diagram-title { fill: #60a5fa; }
+                                .diagram-heading { fill: #e5e7eb; }
+                                .diagram-subheading { fill: #9ca3af; }
+                                .diagram-box { fill: #3b82f6; }
+                                .diagram-box-text { fill: #ffffff; }
+                                .diagram-arrow, .diagram-arrow-line { fill: #6b7280; stroke: #6b7280; }
+                                .diagram-arrow-special { fill: #22c55e; stroke: #22c55e; }
+                                .diagram-info-box { fill: #1e293b; stroke: #3b82f6; }
+                                .diagram-info-text { fill: #60a5fa; }
+                                .diagram-info-title { fill: #60a5fa; }
+                                .diagram-data-box { fill: #1e293b; }
+                                .diagram-data-title { fill: #60a5fa; }
+                                .diagram-data-text { fill: #e5e7eb; }
+                                .diagram-data-special { fill: #22c55e; }
+                              }
+                            </style>
+                          </svg>
+                    </div>
+                </div>
+                
+                <h3 class="text-lg font-semibold mb-3 text-blue-700 dark:text-blue-300">The Dual-LLM Quality Strategy</h3>
+                
+                <div class="border rounded-lg p-5 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-blue-200 dark:border-blue-700 shadow-sm">
+                            <h4 class="font-semibold text-lg mb-2 text-blue-700 dark:text-blue-300">Primary LLM: Generation & Implementation</h4>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">
+                                The primary LLM functions as your coding partner, generating implementation code based on your requirements.
+                            </p>
+                            <ul class="space-y-2 pl-5 list-disc text-gray-700 dark:text-gray-300">
+                                <li>Initial code generation from specifications</li>
+                                <li>Architecture implementation</li>
+                                <li>Feature development</li>
+                                <li>Test creation</li>
+                            </ul>
+                            <div class="mt-3 p-2 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-30 rounded border border-blue-100 text-sm">
+                                <strong>Optimal choice:</strong> Claude 3.7 Sonnet with hybrid reasoning capabilities
+                            </div>
+                        </div>
+    
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-blue-200 dark:border-blue-700 shadow-sm">
+                            <h4 class="font-semibold text-lg mb-2 text-blue-700 dark:text-blue-300">Secondary LLM: Verification & Learning</h4>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">
+                                The secondary LLM serves as your quality assurance partner and technical mentor.
+                            </p>
+                            <ul class="space-y-2 pl-5 list-disc text-gray-700 dark:text-gray-300">
+                                <li>Code review and quality assessment</li>
+                                <li>Security vulnerability detection</li>
+                                <li>Performance optimization suggestions</li>
+                                <li>Answering specific technique questions</li>
+                            </ul>
+                            <div class="mt-3 p-2 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-30 rounded border border-blue-100 text-sm">
+                                <strong>Optimal choice:</strong> GPT-4 or Claude 3 Opus for deep analysis capabilities
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 p-4 bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-700">
+                        <h4 class="font-semibold text-lg mb-2 text-blue-700 dark:text-blue-300">Implementation Example</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="border border-blue-100 p-3 rounded-lg">
+                                <h5 class="font-medium text-green-500 mb-1">Step 1: Primary LLM Generates Code</h5>
+                                <div class="bg-gray-50 p-2 rounded text-xs font-mono">
+                                    <p>Generate a user authentication module with email verification...</p>
+                                    <p class="text-gray-400">// Primary LLM generates complete implementation</p>
+                                </div>
+                            </div>
+                            <div class="border border-blue-100 p-3 rounded-lg">
+                                <h5 class="font-medium text-green-500 mb-1">Step 2: Secondary LLM Reviews</h5>
+                                <div class="bg-gray-50 p-2 rounded text-xs font-mono">
+                                    <p>Review this auth implementation for security issues...</p>
+                                    <p class="text-gray-400">// Secondary LLM provides detailed analysis</p>
+                                </div>
+                            </div>
+                            <div class="border border-blue-100 p-3 rounded-lg">
+                                <h5 class="font-medium text-green-500 mb-1">Step 3: Developer Learns</h5>
+                                <div class="bg-gray-50 p-2 rounded text-xs font-mono">
+                                    <p>Why is proper salt handling important in this case?</p>
+                                    <p class="text-gray-400">// Secondary LLM provides educational context</p>
+                                </div>
+                            </div>
+                            <div class="border border-blue-100 p-3 rounded-lg">
+                                <h5 class="font-medium text-green-500 mb-1">Step 4: Primary LLM Improves</h5>
+                                <div class="bg-gray-50 p-2 rounded text-xs font-mono">
+                                    <p>Enhance the auth module based on these security findings...</p>
+                                    <p class="text-gray-400">// Primary LLM implements improvements</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border border-yellow-200 dark:border-yellow-700 rounded">
+                    <p class="text-gray-800 dark:text-gray-200">
+                        <strong class="text-yellow-700 dark:text-yellow-400">Key Insight:</strong> The Dual-LLM approach combines maximum productivity with continuous learning. While the primary LLM accelerates implementation, the secondary LLM ensures quality and helps developers upskill while building.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ROI Calculator Section -->
+        <div class="card">
+            <div class="p-6">
+                <h2 class="text-xl font-semibold mb-3">AI-First ROI Analysis</h2>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    Understanding the financial impact of adopting AI-first methodologies is critical for making the business case to stakeholders.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <!-- Short-term ROI -->
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 dark:bg-opacity-20 p-4 rounded-lg border border-blue-100 dark:border-blue-800 shadow-sm">
+                        <h3 class="font-semibold text-lg mb-2 text-blue-800 dark:text-blue-300">Short-Term (3-6 months)</h3>
+                        <div class="mb-2 flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Initial Investment</span>
+                            <span class="font-medium">$60K-150K</span>
+                        </div>
+                        <div class="mb-2 flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Productivity Gain</span>
+                            <span class="font-medium text-green-600 dark:text-green-400">2-5×</span>
+                        </div>
+                        <div class="mb-2 flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Time to Break-even</span>
+                            <span class="font-medium">3-4 months</span>
+                        </div>
+                        <div class="pt-2 mt-2 border-t border-blue-100 dark:border-blue-800 flex justify-between">
+                            <span class="font-medium">ROI</span>
+                            <span class="font-bold text-green-600 dark:text-green-400">2-4× investment</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Medium-term ROI -->
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 dark:bg-opacity-20 p-4 rounded-lg border border-blue-100 dark:border-blue-800 shadow-sm">
+                        <h3 class="font-semibold text-lg mb-2 text-blue-800 dark:text-blue-300">Medium-Term (6-12 months)</h3>
+                        <div class="mb-2 flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Productivity Gain</span>
+                            <span class="font-medium text-green-600 dark:text-green-400">5-10×</span>
+                        </div>
+                        <div class="mb-2 flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Bug Reduction</span>
+                            <span class="font-medium">30-50%</span>
+                        </div>
+                        <div class="mb-2 flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Time-to-Market</span>
+                            <span class="font-medium">40-60% faster</span>
+                        </div>
+                        <div class="pt-2 mt-2 border-t border-blue-100 dark:border-blue-800 flex justify-between">
+                            <span class="font-medium">ROI</span>
+                            <span class="font-bold text-green-600 dark:text-green-400">5-8× investment</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Long-term ROI -->
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 dark:bg-opacity-20 p-4 rounded-lg border border-blue-100 dark:border-blue-800 shadow-sm">
+                        <h3 class="font-semibold text-lg mb-2 text-blue-800 dark:text-blue-300">Long-Term (12-24 months)</h3>
+                        <div class="mb-2 flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Productivity Gain</span>
+                            <span class="font-medium text-green-600 dark:text-green-400">10-20×</span>
+                        </div>
+                        <div class="mb-2 flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Technical Debt</span>
+                            <span class="font-medium">50-70% reduction</span>
+                        </div>
+                        <div class="mb-2 flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Documentation</span>
+                            <span class="font-medium">60-80% improvement</span>
+                        </div>
+                        <div class="pt-2 mt-2 border-t border-blue-100 dark:border-blue-800 flex justify-between">
+                            <span class="font-medium">ROI</span>
+                            <span class="font-bold text-green-600 dark:text-green-400">10-15× investment</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+                    <h3 class="font-semibold text-lg mb-3 text-gray-800 dark:text-gray-200">Department-Level Analysis: 200 Developer-Day Project</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead>
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 dark:bg-gray-800 dark:text-gray-400">Metric</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 dark:bg-gray-800 dark:text-gray-400">Traditional</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 dark:bg-gray-800 dark:text-gray-400">AI-First</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 dark:bg-gray-800 dark:text-gray-400">Difference</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                                <tr>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">Development time</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">200 developer-days</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">20 developer-days</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-green-600 dark:text-green-400">90% reduction</td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-900">
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">Labor cost ($800/day)</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">$160,000</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">$16,000</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-green-600 dark:text-green-400">$144,000 savings</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">Time-to-market</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">10 weeks</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">2 weeks</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-green-600 dark:text-green-400">8 weeks earlier</td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-900">
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">Market opportunity value</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">Baseline</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">+$200K-500K</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-green-600 dark:text-green-400">Significant gain</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">First-year total impact</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">$216,000</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">$28,800</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-green-600 dark:text-green-400">$180,000+ benefit</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+    
+    <!-- Comparison Tab Template -->
+    <template id="comparison-template">
+        <div class="flex flex-col gap-6">
+            <div class="text-center mb-4">
+                <h1 class="text-2xl font-bold">Development Approach Comparison</h1>
+                <p class="text-lg text-gray-600">Traditional vs AI-Assisted vs AI-First</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Development Metrics Chart -->
+                <div class="card">
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold mb-2">Development Productivity Metrics</h2>
+                        <div id="productivity-chart" class="chart-container">
+                            <!-- Chart will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Radar Chart for Role Comparison -->
+                <div class="card">
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold mb-2">Development Approach Comparison</h2>
+                        <div id="radar-chart" class="chart-container">
+                            <!-- Chart will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Comparison Table -->
+            <div class="card">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold mb-2">Detailed Development Approach Comparison</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="p-2 border text-left">Aspect</th>
+                                    <th class="p-2 border text-left">Traditional</th>
+                                    <th class="p-2 border text-left">AI-Assisted</th>
+                                    <th class="p-2 border text-left">AI-First</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white">
+                                    <td class="p-2 border font-medium">Code Generation</td>
+                                    <td class="p-2 border">Manual coding with no AI help</td>
+                                    <td class="p-2 border">Human writes with AI suggestions</td>
+                                    <td class="p-2 border">AI generates bulk of code with human guidance</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="p-2 border font-medium">Development Speed</td>
+                                    <td class="p-2 border">Baseline</td>
+                                    <td class="p-2 border">~1.5-2× faster</td>
+                                    <td class="p-2 border">Up to 10× faster for appropriate tasks</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="p-2 border font-medium">First-Pass Accuracy</td>
+                                    <td class="p-2 border">Variable by developer</td>
+                                    <td class="p-2 border">Higher than traditional (~78% vs 70%)</td>
+                                    <td class="p-2 border">Depends on task; ~90% for well-defined functions</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="p-2 border font-medium">Error Rate</td>
+                                    <td class="p-2 border">Baseline</td>
+                                    <td class="p-2 border">Similar or slightly lower</td>
+                                    <td class="p-2 border">Potentially higher without verification</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="p-2 border font-medium">Verification Effort</td>
+                                    <td class="p-2 border">Manual review, testing</td>
+                                    <td class="p-2 border">Manual review, testing</td>
+                                    <td class="p-2 border">Automated tests + targeted human review</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="p-2 border font-medium">Knowledge Required</td>
+                                    <td class="p-2 border">Deep understanding of all code</td>
+                                    <td class="p-2 border">Understanding of system + prompt ability</td>
+                                    <td class="p-2 border">System design + effective prompt engineering</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <!-- Workflows Tab Template -->
+    <template id="workflows-template">
+        <div class="grid grid-cols-1 gap-6">
+            <div class="card">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-3 text-center">Development Workflow Comparison</h2>
+                    <p class="text-center mb-6">Visual comparison of traditional, AI-assisted, and AI-first development workflows</p>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="border rounded-lg p-4">
+                            <h3 class="text-xl font-semibold mb-3 text-center">Traditional Workflow</h3>
+                            <div id="traditional-workflow" class="mermaid">
+                                <!-- Mermaid diagram will be rendered here -->
+                            </div>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <h3 class="text-xl font-semibold mb-3 text-center">AI-Assisted Workflow</h3>
+                            <div id="ai-assisted-workflow" class="mermaid">
+                                <!-- Mermaid diagram will be rendered here -->
+                            </div>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <h3 class="text-xl font-semibold mb-3 text-center">AI-First Workflow</h3>
+                            <div id="ai-first-workflow" class="mermaid">
+                                <!-- Mermaid diagram will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <!-- Sources Tab Template -->
+    <template id="sources-template">
+        <div class="flex flex-col gap-6 sources-tab">
+            <div class="text-center mb-4">
+                <h1 class="text-2xl font-bold">Sources & References</h1>
+                <p class="text-lg text-gray-600">Academic and industry sources supporting AI-First development methodologies</p>
+            </div>
+
+            <div class="mb-6">
+              <div class="flex items-center border rounded-lg p-2 bg-white shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400 mr-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+                <input id="sources-search" type="text" placeholder="Search sources..." class="w-full outline-none text-gray-700" />
+              </div>
+            </div>
+
+            <!-- Source cards will be dynamically loaded here -->
+        </div>
+    </template>
+    
+    <!-- Main JavaScript -->
+    <!-- Enhanced Markdown Renderer -->
+    <script src="{{ url_for('static', filename='js/markdown-renderer.js') }}"></script>
+    
+    <!-- TOC Navigation Fix -->
+    <script src="{{ url_for('static', filename='js/fixed-toc-height.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tab-navigation-fix.js') }}"></script>
+    
+    <!-- Main App JS -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    
+    <!-- Theme toggle script -->
+    <script src="{{ url_for('static', filename='js/theme-toggle.js') }}"></script>
+    
+    <!-- Sources integration -->
+    <script src="static/js/sources-integration.js"></script>
+    
+    <script>
+        // Check if we need to create the static directory for images
+        function createStaticDirectories() {
+            try {
+                // Using fetch API to check if directory exists
+                fetch('/static/images/').catch(() => {
+                    console.warn('Static images directory may not exist. Please create: /static/images/');
+                    
+                    // Show alert to user
+                    const alert = document.createElement('div');
+                    alert.className = 'fixed top-4 right-4 bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded z-50';
+                    alert.innerHTML = `
+                        <strong class="font-bold">Directory Missing:</strong>
+                        <span class="block sm:inline"> Please create /static/images/ directory.</span>
+                        <button class="absolute top-0 right-0 px-4 py-3" onclick="this.parentElement.remove()">
+                            &times;
+                        </button>
+                    `;
+                    document.body.appendChild(alert);
+                    
+                    // Remove alert after 10 seconds
+                    setTimeout(() => {
+                        if (document.body.contains(alert)) {
+                            alert.remove();
+                        }
+                    }, 10000);
+                });
+            } catch (e) {
+                console.error('Error checking static directories:', e);
+            }
+        }
+        
+        // Run the check
+        createStaticDirectories();
+    </script>
+
+    <!-- Add initial TOC data to the page -->
+    <script>
+        // Add TOC data from Flask template
+        window.tocData = {{ headings | tojson | safe }};
+        
+        // Initialize the grid layout properly on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fix for TOC display when navigating tabs
+            window.fixTOCLayout = function() {
+                // Check if we're on the overview tab
+                const activeTab = document.querySelector('.tab-button.active');
+                if (!activeTab || activeTab.getAttribute('data-tab') !== 'overview') {
+                    return; // Not on overview tab
+                }
+                
+                // Fix grid layout
+                const gridContainer = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-4.gap-6');
+                if (gridContainer) {
+                    gridContainer.style.display = 'grid';
+                    gridContainer.style.gridTemplateColumns = '250px 1fr';
+                    
+                    // Fix columns
+                    const tocColumn = gridContainer.querySelector('.md\\:col-span-1');
+                    if (tocColumn) {
+                        tocColumn.style.gridColumn = '1';
+                        tocColumn.style.display = 'block';
+                        tocColumn.classList.remove('hidden');
+                    }
+                    
+                    const contentColumn = gridContainer.querySelector('.md\\:col-span-3');
+                    if (contentColumn) {
+                        contentColumn.style.gridColumn = '2';
+                    }
+                }
+                
+                // Make sure TOC is visible
+                const tocContainer = document.querySelector('.toc-container');
+                if (tocContainer) {
+                    tocContainer.style.display = 'block';
+                    tocContainer.style.visibility = 'visible';
+                    tocContainer.style.position = 'relative';
+                    tocContainer.style.top = '0';
+                }
+            };
+            
+            // Run on initialization
+            setTimeout(window.fixTOCLayout, 200);
+        });
+    </script>
+<script src="{{ url_for('static', filename='js/mermaid-pan-zoom.js') }}"></script>
+<!-- Executive Summary Tab Template -->
+<template id="executive-template">
+    <div id="executive-summary-container">
+        <!-- React component will be mounted here -->
+        <div class="animate-pulse flex flex-col space-y-4">
+            <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+            <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+            <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+            <div class="h-4 bg-gray-200 rounded w-2/3"></div>
+            <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+        </div>
+    </div>
+</template>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize workflow diagram interactivity
+        function initWorkflowDiagram() {
+            const workflowDiagrams = document.querySelectorAll('.workflow-diagram');
+            
+            workflowDiagrams.forEach(diagram => {
+                // Add click to zoom functionality
+                diagram.addEventListener('click', function() {
+                    if (this.classList.contains('zoomed')) {
+                        this.classList.remove('zoomed');
+                        this.style.transform = '';
+                        this.style.cursor = 'zoom-in';
+                        this.style.maxWidth = '100%';
+                    } else {
+                        this.classList.add('zoomed');
+                        this.style.transform = 'scale(1.4)';
+                        this.style.cursor = 'zoom-out';
+                        this.style.maxWidth = '140%';
+                    }
+                });
+                
+                // Set initial cursor
+                diagram.style.cursor = 'zoom-in';
+            });
+        }
+        
+        // Call after tab content is loaded
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Let tab content load first
+                setTimeout(initWorkflowDiagram, 500);
+            });
+        });
+        
+        // Initial call
+        setTimeout(initWorkflowDiagram, 1000);
+    });
+</script>
+<script>
+    // Create a check for the workflow diagram image
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to handle image error
+        function handleImageError(event) {
+            console.error('Error loading image:', event.target.src);
+            event.target.outerHTML = `
+                <div class="p-4 border border-red-200 bg-red-50 rounded text-center">
+                    <p class="text-red-600">
+                        <strong>Image not found:</strong> ${event.target.src}
+                    </p>
+                    <p class="text-gray-600 mt-2">
+                        Please ensure the image exists at the specified path or create the following directories:
+                        <br><code>/static/images/</code>
+                    </p>
+                </div>
+            `;
+        }
+        
+        // Add error handler to all workflow diagrams
+        document.querySelectorAll('.workflow-diagram').forEach(img => {
+            img.addEventListener('error', handleImageError);
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+flowchart TD
+    classDef human fill:#CC3333,color:#D9D9D9,stroke:#990000
+    classDef machine fill:#3355AA,color:#D9D9D9,stroke:#223377
+    classDef common fill:#33AA66,color:#D9D9D9,stroke:#227744
+    classDef input fill:#EE8844,color:#D9D9D9,stroke:#BB6622
+    classDef output fill:#EE8844,color:#D9D9D9,stroke:#BB6622
+
+    Start([Start Project]) --> Requirements[Gather Requirements]
+    Requirements --> Design[Create Design & Architecture]
+    Design --> Implementation[Manual Code Implementation]
+    Implementation --> Testing[Manual Testing]
+    Testing --> BugFound{Bugs Found?}
+    BugFound -- Yes --> Debugging[Manual Debugging]
+    Debugging --> Testing
+    BugFound -- No --> CodeReview[Code Review]
+    CodeReview --> ReviewIssues{Issues?}
+    ReviewIssues -- Yes --> Implementation
+    ReviewIssues -- No --> Documentation[Create Documentation]
+    Documentation --> Deployment[Deploy Code]
+    Deployment --> Maintenance[Maintenance & Updates]
+    
+    class Start input
+    class Requirements,Design,Implementation,Documentation,Debugging,Maintenance human
+    class Testing,CodeReview human
+    class BugFound,ReviewIssues common
+    class Deployment output
+    
+    subgraph Developer Tasks
+        Implementation
+        Debugging
+        Documentation
+    end

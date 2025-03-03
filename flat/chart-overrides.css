@@ -1,0 +1,92 @@
+/* chart-overrides.css */
+
+/* ===== RADAR CHART OVERRIDES ===== */
+/* Force radar chart colors - targeting the specific paths */
+.recharts-radar-polygon[name="Traditional"],
+.recharts-radar-curve[name="Traditional"] {
+  fill: #FF5252 !important;
+  stroke: #FF5252 !important;
+  fill-opacity: 0.6 !important;
+}
+
+.recharts-radar-polygon[name="AI-Assisted"],
+.recharts-radar-curve[name="AI-Assisted"] {
+  fill: #4CAF50 !important; 
+  stroke: #4CAF50 !important;
+  fill-opacity: 0.6 !important;
+}
+
+.recharts-radar-polygon[name="AI-First"],
+.recharts-radar-curve[name="AI-First"] {
+  fill: #2196F3 !important;
+  stroke: #2196F3 !important;
+  fill-opacity: 0.6 !important;
+}
+
+/* Hide the radial grid lines */
+.recharts-polar-radius-axis-line,
+.recharts-polar-radius-axis-tick-line {
+  display: none !important;
+}
+
+/* ===== BAR CHART OVERRIDES ===== */
+/* Target the specific bars for the productivity metrics chart */
+.recharts-bar-rectangle[name="Traditional"] path {
+  fill: #9e9e9e !important; /* Grey for Traditional */
+}
+
+.recharts-bar-rectangle[name="AI-Assisted"] path {
+  fill: #4CAF50 !important; /* Green for AI-Assisted */
+}
+
+.recharts-bar-rectangle[name="AI-First"] path {
+  fill: #2196F3 !important; /* Blue for AI-First */
+}
+
+/* ===== TOOLTIP STYLING (APPLIES TO BOTH CHARTS) ===== */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background-color: #333 !important;
+  border: 1px solid #555 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2) !important;
+}
+
+.recharts-tooltip-wrapper .recharts-default-tooltip .recharts-tooltip-label {
+  color: #e0e0e0 !important;
+  font-weight: bold !important;
+  border-bottom: 1px solid #555 !important;
+  padding-bottom: 5px !important;
+  margin-bottom: 8px !important;
+}
+
+.recharts-tooltip-wrapper .recharts-default-tooltip .recharts-tooltip-item-list {
+  padding: 0 !important;
+}
+
+.recharts-tooltip-wrapper .recharts-default-tooltip .recharts-tooltip-item {
+  color: #ffffff !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  padding: 4px 0 !important;
+}
+
+/* ===== CHART SIZE ADJUSTMENTS ===== */
+/* Increase radar chart size */
+.recharts-radar-chart {
+  min-height: 300px !important;
+}
+
+/* ===== DARK BACKGROUND FOR CHARTS ===== */
+.recharts-surface {
+  background-color: #1a1a1a !important;
+}
+
+/* Apply dark style to chart container */
+.h-64 {
+  background-color: #1a1a1a !important;
+}
+
+/* Ensure proper legend colors */
+.recharts-legend-item-text {
+  color: #e0e0e0 !important;
+}

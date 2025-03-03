@@ -1,0 +1,312 @@
+/* Enhanced Dark theme styles with improved consistency */
+:root {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #242424;
+    --bg-tertiary: #2d2d2d;
+    --bg-card: #2a2a2a;
+    --bg-card-alt: #333333;
+    --bg-highlight: rgba(59, 130, 246, 0.1);
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #909090;
+    --text-highlight: #ffffff;
+    --accent-primary: #3b82f6;    /* Brighter blue */
+    --accent-secondary: #60a5fa;  /* Medium blue */
+    --accent-tertiary: #93c5fd;   /* Light blue */
+    --border-color: #444444;
+    --code-bg: #2d2d2d;
+    --table-header-bg: #333333;
+    --table-row-alt: #2d2d2d;
+    --table-border: #444444;
+    --chart-gray: #94a3b8;
+    --chart-blue-light: #60a5fa;
+    --chart-blue: #3b82f6;
+}
+
+body.dark-theme {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Header and footer */
+body.dark-theme header,
+body.dark-theme footer {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+body.dark-theme header h1,
+body.dark-theme header p {
+    color: var(--text-primary);
+}
+
+body.dark-theme footer p {
+    color: var(--text-secondary);
+}
+
+/* Tabs */
+body.dark-theme .tab-button {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .tab-button:hover {
+    color: var(--accent-secondary);
+}
+
+body.dark-theme .tab-button.active {
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+}
+
+/* Cards */
+body.dark-theme .card {
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Table of contents */
+body.dark-theme .toc-container {
+    border-right-color: var(--border-color);
+}
+
+body.dark-theme .toc-container h3 {
+    color: var(--accent-secondary);
+    border-bottom-color: var(--border-color);
+}
+
+body.dark-theme .toc-link {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .toc-link:hover {
+    color: var(--accent-tertiary);
+    background-color: rgba(96, 165, 250, 0.1);
+}
+
+body.dark-theme .toc-link.active {
+    color: var(--accent-secondary);
+    border-left-color: var(--accent-secondary);
+}
+
+body.dark-theme .toc-link.level-3 {
+    border-left-color: var(--border-color);
+}
+
+/* Markdown content */
+body.dark-theme .markdown-content h1,
+body.dark-theme .markdown-content h2,
+body.dark-theme .markdown-content h3,
+body.dark-theme .markdown-content h4 {
+    color: var(--accent-secondary);
+}
+
+body.dark-theme .markdown-content a {
+    color: var(--accent-tertiary);
+}
+
+body.dark-theme .markdown-content code {
+    background-color: var(--code-bg);
+}
+
+body.dark-theme .markdown-content pre {
+    background-color: var(--code-bg);
+}
+
+/* Tables */
+body.dark-theme table {
+    border-color: var(--table-border);
+}
+
+body.dark-theme th {
+    background-color: var(--table-header-bg);
+    border-color: var(--table-border);
+    color: var(--text-primary);
+}
+
+body.dark-theme td {
+    border-color: var(--table-border);
+}
+
+body.dark-theme tr:nth-child(even) {
+    background-color: var(--table-row-alt);
+}
+
+/* Code blocks */
+body.dark-theme pre,
+body.dark-theme code {
+    background-color: var(--code-bg);
+}
+
+/* Lists */
+body.dark-theme ul.list-disc li::marker {
+    color: var(--accent-tertiary);
+}
+
+body.dark-theme ol.list-decimal li::marker {
+    color: var(--accent-tertiary);
+}
+
+/* Charts */
+body.dark-theme .chart-container {
+    background-color: var(--bg-card);
+}
+
+/* Specific components */
+body.dark-theme .border {
+    border-color: var(--border-color);
+}
+
+body.dark-theme .bg-blue-50 {
+    background-color: var(--bg-highlight);
+}
+
+body.dark-theme .bg-yellow-50 {
+    background-color: rgba(245, 158, 11, 0.1);
+}
+
+/* Generation-Debugging Cards */
+body.dark-theme .border.rounded-lg.p-4.bg-blue-50 {
+    background-color: var(--bg-tertiary);
+    border-color: var(--accent-primary);
+}
+
+body.dark-theme .border.rounded-lg.p-4.bg-blue-50 h3 {
+    color: var(--accent-secondary);
+}
+
+body.dark-theme .border.rounded-lg.p-4.bg-blue-50 .border-b {
+    border-color: var(--accent-primary);
+    border-opacity: 0.4;
+}
+
+body.dark-theme .border.rounded-lg.p-4.bg-blue-50 .text-gray-700 {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .border.rounded-lg.p-4.bg-blue-50 .text-blue-700 {
+    color: var(--accent-tertiary);
+}
+
+/* Benefit text styling */
+body.dark-theme .text-blue-700 {
+    color: var(--accent-tertiary);
+}
+
+body.dark-theme .text-gray-700,
+body.dark-theme .text-gray-600,
+body.dark-theme .text-gray-800 {
+    color: var(--text-secondary);
+}
+
+/* White bg elements */
+body.dark-theme .bg-white {
+    background-color: var(--bg-tertiary);
+}
+
+/* Alert boxes */
+body.dark-theme .p-3.bg-yellow-50.border.border-yellow-200.rounded {
+    background-color: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+/* Implementation section */
+body.dark-theme .p-2.border.font-medium,
+body.dark-theme .p-2.border {
+    border-color: var(--border-color);
+}
+
+body.dark-theme .bg-gray-100 {
+    background-color: var(--bg-tertiary);
+}
+
+body.dark-theme .bg-gray-50 {
+    background-color: var(--bg-secondary);
+}
+
+body.dark-theme .bg-white {
+    background-color: var(--bg-card);
+}
+
+/* Comparison charts */
+body.dark-theme #productivity-chart rect,
+body.dark-theme #radar-chart polygon,
+body.dark-theme #speed-chart rect,
+body.dark-theme #tasks-chart rect,
+body.dark-theme #time-chart rect,
+body.dark-theme #error-chart path,
+body.dark-theme #roi-chart path {
+    fill-opacity: 0.8 !important; /* Make chart elements slightly less opaque for better visibility */
+}
+
+body.dark-theme .recharts-cartesian-grid-horizontal line,
+body.dark-theme .recharts-cartesian-grid-vertical line {
+    stroke: var(--border-color) !important;
+    stroke-dasharray: 3 3;
+    stroke-opacity: 0.6;
+}
+
+body.dark-theme .recharts-text {
+    fill: var(--text-secondary) !important;
+}
+
+body.dark-theme .recharts-legend-item-text {
+    color: var(--text-secondary) !important;
+}
+
+/* Mermaid diagrams - custom overrides for dark mode */
+body.dark-theme .mermaid .label {
+    color: var(--text-primary) !important;
+    fill: var(--text-primary) !important;
+}
+
+body.dark-theme .mermaid .node rect,
+body.dark-theme .mermaid .node circle,
+body.dark-theme .mermaid .node polygon,
+body.dark-theme .mermaid .node path {
+    fill: var(--bg-tertiary) !important;
+    stroke: var(--accent-primary) !important;
+}
+
+body.dark-theme .mermaid .edgePath .path,
+body.dark-theme .mermaid .flowchart-link {
+    stroke: var(--accent-tertiary) !important;
+}
+
+body.dark-theme .mermaid .marker {
+    fill: var(--accent-tertiary) !important;
+}
+
+body.dark-theme .mermaid .cluster rect {
+    fill: var(--bg-secondary) !important;
+    stroke: var(--border-color) !important;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.theme-toggle svg {
+    width: 24px;
+    height: 24px;
+}

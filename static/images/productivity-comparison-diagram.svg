@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700">
+  <!-- Background -->
+  <rect width="900" height="700" fill="#f8fafc" />
+  
+  <!-- Title -->
+  <text x="450" y="40" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#1e40af">Traditional vs. AI-First Development: Productivity Comparison</text>
+  
+  <!-- Dividing line -->
+  <line x1="450" y1="70" x2="450" y2="450" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,5" />
+  
+  <!-- Traditional approach (left side) -->
+  <text x="225" y="80" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#334155">Traditional Approach</text>
+  <text x="225" y="105" font-family="Arial" font-size="14" text-anchor="middle" fill="#64748b">Sequential, Single-Path Exploration</text>
+  
+  <!-- Traditional approach flow -->
+  <rect x="125" y="130" width="200" height="50" rx="10" ry="10" fill="#60a5fa" />
+  <text x="225" y="160" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Requirements Analysis</text>
+  
+  <!-- Arrow down -->
+  <polygon points="225,190 215,180 235,180" fill="#94a3b8" />
+  <line x1="225" y1="180" x2="225" y2="210" stroke="#94a3b8" stroke-width="2" />
+  
+  <rect x="125" y="210" width="200" height="50" rx="10" ry="10" fill="#60a5fa" />
+  <text x="225" y="240" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Architecture Design</text>
+  
+  <!-- Arrow down -->
+  <polygon points="225,270 215,260 235,260" fill="#94a3b8" />
+  <line x1="225" y1="260" x2="225" y2="290" stroke="#94a3b8" stroke-width="2" />
+  
+  <rect x="125" y="290" width="200" height="50" rx="10" ry="10" fill="#60a5fa" />
+  <text x="225" y="320" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Implementation</text>
+  
+  <!-- Arrow down -->
+  <polygon points="225,350 215,340 235,340" fill="#94a3b8" />
+  <line x1="225" y1="340" x2="225" y2="370" stroke="#94a3b8" stroke-width="2" />
+  
+  <rect x="125" y="370" width="200" height="50" rx="10" ry="10" fill="#60a5fa" />
+  <text x="225" y="400" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Testing & Validation</text>
+  
+  <!-- Arrow down -->
+  <polygon points="225,430 215,420 235,420" fill="#94a3b8" />
+  <line x1="225" y1="420" x2="225" y2="450" stroke="#94a3b8" stroke-width="2" />
+  
+  <rect x="125" y="450" width="200" height="50" rx="10" ry="10" fill="#60a5fa" />
+  <text x="225" y="480" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Final Solution</text>
+  
+  <!-- Traditional description - IMPROVED BOX -->
+  <rect x="50" y="510" width="350" height="40" rx="5" ry="5" fill="white" stroke="#60a5fa" stroke-width="2" />
+  <text x="225" y="535" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#1e40af">Limited bandwidth restricts iterations and exploration</text>
+  
+  <!-- AI-First approach (right side) -->
+  <text x="675" y="80" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#334155">AI-First Approach</text>
+  <text x="675" y="105" font-family="Arial" font-size="14" text-anchor="middle" fill="#64748b">Parallel, Multi-Path Exploration</text>
+  
+  <!-- AI-First approach - Requirements Analysis -->
+  <rect x="575" y="130" width="200" height="50" rx="10" ry="10" fill="#3b82f6" />
+  <text x="675" y="160" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Requirements Analysis</text>
+  
+  <!-- Branch out to three architecture approaches -->
+  <line x1="675" y1="180" x2="675" y2="195" stroke="#94a3b8" stroke-width="2" />
+  <line x1="675" y1="195" x2="525" y2="195" stroke="#94a3b8" stroke-width="2" />
+  <line x1="675" y1="195" x2="825" y2="195" stroke="#94a3b8" stroke-width="2" />
+  
+  <polygon points="525,210 515,200 535,200" fill="#94a3b8" />
+  <line x1="525" y1="195" x2="525" y2="210" stroke="#94a3b8" stroke-width="2" />
+  
+  <polygon points="675,210 665,200 685,200" fill="#94a3b8" />
+  <line x1="675" y1="195" x2="675" y2="210" stroke="#94a3b8" stroke-width="2" />
+  
+  <polygon points="825,210 815,200 835,200" fill="#94a3b8" />
+  <line x1="825" y1="195" x2="825" y2="210" stroke="#94a3b8" stroke-width="2" />
+  
+  <!-- Architecture options -->
+  <rect x="475" y="210" width="100" height="50" rx="10" ry="10" fill="#3b82f6" />
+  <text x="525" y="233" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Microservice</text>
+  <text x="525" y="248" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Architecture</text>
+  
+  <rect x="625" y="210" width="100" height="50" rx="10" ry="10" fill="#3b82f6" />
+  <text x="675" y="233" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Serverless</text>
+  <text x="675" y="248" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Approach</text>
+  
+  <rect x="775" y="210" width="100" height="50" rx="10" ry="10" fill="#3b82f6" />
+  <text x="825" y="233" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Monolith with</text>
+  <text x="825" y="248" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">CQRS Pattern</text>
+  
+  <!-- Arrows to implementation -->
+  <polygon points="525,290 515,280 535,280" fill="#94a3b8" />
+  <line x1="525" y1="260" x2="525" y2="290" stroke="#94a3b8" stroke-width="2" />
+  
+  <polygon points="675,290 665,280 685,280" fill="#94a3b8" />
+  <line x1="675" y1="260" x2="675" y2="290" stroke="#94a3b8" stroke-width="2" />
+  
+  <polygon points="825,290 815,280 835,280" fill="#94a3b8" />
+  <line x1="825" y1="260" x2="825" y2="290" stroke="#94a3b8" stroke-width="2" />
+  
+  <!-- Implementations -->
+  <rect x="475" y="290" width="100" height="50" rx="10" ry="10" fill="#3b82f6" />
+  <text x="525" y="320" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Implementation A</text>
+  
+  <rect x="625" y="290" width="100" height="50" rx="10" ry="10" fill="#3b82f6" />
+  <text x="675" y="320" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Implementation B</text>
+  
+  <rect x="775" y="290" width="100" height="50" rx="10" ry="10" fill="#3b82f6" />
+  <text x="825" y="320" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Implementation C</text>
+  
+  <!-- Arrows to testing -->
+  <polygon points="525,370 515,360 535,360" fill="#94a3b8" />
+  <line x1="525" y1="340" x2="525" y2="370" stroke="#94a3b8" stroke-width="2" />
+  
+  <polygon points="675,370 665,360 685,360" fill="#94a3b8" />
+  <line x1="675" y1="340" x2="675" y2="370" stroke="#94a3b8" stroke-width="2" />
+  
+  <polygon points="825,370 815,360 835,360" fill="#94a3b8" />
+  <line x1="825" y1="340" x2="825" y2="370" stroke="#94a3b8" stroke-width="2" />
+  
+  <!-- Testing & Validation -->
+  <rect x="475" y="370" width="100" height="50" rx="10" ry="10" fill="#3b82f6" />
+  <text x="525" y="395" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="white">Comprehensive</text>
+  <text x="525" y="410" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="white">Testing A</text>
+  
+  <rect x="625" y="370" width="100" height="50" rx="10" ry="10" fill="#3b82f6" />
+  <text x="675" y="395" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="white">Comprehensive</text>
+  <text x="675" y="410" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="white">Testing B</text>
+  
+  <rect x="775" y="370" width="100" height="50" rx="10" ry="10" fill="#3b82f6" />
+  <text x="825" y="395" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="white">Comprehensive</text>
+  <text x="825" y="410" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="white">Testing C</text>
+  
+  <!-- Converge to evaluation -->
+  <line x1="525" y1="420" x2="525" y2="435" stroke="#94a3b8" stroke-width="2" />
+  <line x1="675" y1="420" x2="675" y2="435" stroke="#94a3b8" stroke-width="2" />
+  <line x1="825" y1="420" x2="825" y2="435" stroke="#94a3b8" stroke-width="2" />
+  
+  <line x1="525" y1="435" x2="675" y2="435" stroke="#94a3b8" stroke-width="2" />
+  <line x1="675" y1="435" x2="825" y2="435" stroke="#94a3b8" stroke-width="2" />
+  <line x1="675" y1="435" x2="675" y2="450" stroke="#94a3b8" stroke-width="2" />
+  <polygon points="675,450 665,440 685,440" fill="#94a3b8" />
+  
+  <!-- Solution selection -->
+  <rect x="575" y="450" width="200" height="50" rx="10" ry="10" fill="#3b82f6" />
+  <text x="675" y="480" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Optimal Solution Selection</text>
+  
+  <!-- AI-First description - IMPROVED BOX -->
+  <rect x="500" y="510" width="350" height="40" rx="5" ry="5" fill="white" stroke="#3b82f6" stroke-width="2" />
+  <text x="675" y="535" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#1e40af">Bandwidth enables parallel exploration and rapid refactoring</text>
+  
+  <!-- Horizontal rule to separate sections -->
+  <line x1="50" y1="570" x2="850" y2="570" stroke="#94a3b8" stroke-width="1" />
+  
+  <!-- Team Productivity Comparison -->
+  <rect x="50" y="585" width="800" height="115" rx="10" ry="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" />
+  <text x="450" y="610" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#1e40af">Developer Productivity Comparison</text>
+  
+  <!-- Traditional Productivity -->
+  <rect x="100" y="630" width="300" height="60" rx="5" ry="5" fill="#dbeafe" />
+  <text x="250" y="650" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e40af">Traditional Development</text>
+  <text x="250" y="675" font-family="Arial" font-size="14" text-anchor="middle" fill="#334155">750 LOC/day (6k-12k average raw speed)</text>
+  
+  <!-- AI-First Productivity -->
+  <rect x="500" y="630" width="300" height="60" rx="5" ry="5" fill="#bfdbfe" />
+  <text x="650" y="650" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e40af">AI-First Development</text>
+  <text x="650" y="675" font-family="Arial" font-size="14" text-anchor="middle" fill="#334155">12k LOC/day (300k LOC/day average raw speed)</text>
+  
+  <!-- Comparison arrow -->
+  <line x1="410" y1="660" x2="490" y2="660" stroke="#94a3b8" stroke-width="2" />
+  <polygon points="490,660 480,655 480,665" fill="#94a3b8" />
+  <text x="450" y="650" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#1e40af">16× Final Code Productivity</text>
+</svg>

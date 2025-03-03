@@ -1,0 +1,97 @@
+flowchart TD
+    classDef human fill:#CC3333,color:#D9D9D9,stroke:#990000
+    classDef machine fill:#3355AA,color:#D9D9D9,stroke:#223377
+    classDef common fill:#33AA66,color:#D9D9D9,stroke:#227744
+    classDef input fill:#EE8844,color:#D9D9D9,stroke:#BB6622
+    classDef output fill:#EE8844,color:#D9D9D9,stroke:#BB6622
+    classDef hybrid fill:#9955AA,color:#D9D9D9,stroke:#773388
+
+    Start([Start Project]) --> Requirements[Gather Requirements]
+    Requirements --> Prompting[Create Detailed Prompts/Specs]
+    Prompting --> Architecture[AI Generates System Architecture]
+    Architecture --> HumanReviewArch[Human Reviews/Refines Architecture]
+    
+    %% Added feedback for exploring multiple architectures
+    HumanReviewArch --> ExploreMore{Explore More<br/>Approaches?}
+    ExploreMore -- Yes --> Architecture
+    ExploreMore -- No --> Day1[Day 1: Bulk Generation]
+    
+    Day1 --> ParallelGen[Parallel AI Code Generation]
+    ParallelGen --> AITests[AI Generates Test Suite]
+    
+    %% Added comprehensive testing feedback
+    AITests --> EnhancedTest[Generate Comprehensive<br/>Test Scenarios]
+    EnhancedTest --> EdgeCases[Cover Edge Cases<br/>& Rare Conditions]
+    EdgeCases --> Day2[Day 2: Systematic Debugging]
+    ParallelGen --> Day2
+
+    Day2 --> TestRun[Run Tests]
+    TestRun --> ErrorAnalysis[AI Analyzes Errors]
+    ErrorAnalysis --> BatchFix[AI Generates Batch Fixes]
+    BatchFix --> TestRun
+    
+    TestRun --> IterationCheck{5+ Iterations or<br/>Complex Issues?}
+    IterationCheck -- Yes --> HumanDebug[Human Debugging]
+    IterationCheck -- No --> TestPassing{Tests Passing?}
+    HumanDebug --> TestPassing
+    
+    TestPassing -- No --> ErrorAnalysis
+    TestPassing -- Yes --> MultiLLMReview[Multi-LLM Code Review]
+    
+    %% Added security scanning & optimization
+    MultiLLMReview --> SecurityScan[AI Security<br/>Vulnerability Scan]
+    SecurityScan --> OptimPerf[AI Performance<br/>Optimization]
+    OptimPerf --> HumanReviewCode[Human Validation & Refinement]
+    
+    HumanReviewCode --> AutoDocs[AI Generates Documentation]
+    AutoDocs --> Deployment[Deploy Code]
+    
+    %% Added enhanced monitoring and improvement cycle with maintenance 
+    Deployment --> AIMonitoring[AI-Powered Monitoring]
+    AIMonitoring --> IssueDetected{Issues<br/>Detected?}
+    IssueDetected -- Yes --> SelfHealing[Self-Healing/Auto Fix]
+    IssueDetected -- No --> Maintenance[Maintenance & Updates]
+    SelfHealing --> Maintenance
+    
+    %% Maintenance and continuous improvement
+    Maintenance --> AIRefactoring[AI-Powered<br/>Refactoring]
+    AIRefactoring --> TechDebtAnalysis[Technical Debt<br/>Analysis]
+    TechDebtAnalysis --> AutoImprovement[Continuous AI<br/>Improvement]
+    AutoImprovement --> NewFeatures{New Features<br/>Needed?}
+    NewFeatures -- Yes --> Prompting
+    NewFeatures -- No --> AIMonitoring
+    
+    class Start input
+    class Requirements,HumanReviewArch,HumanReviewCode,HumanDebug human
+    class Architecture,ParallelGen,AITests,ErrorAnalysis,BatchFix,MultiLLMReview,AutoDocs,AIMonitoring,SelfHealing,AIRefactoring,TechDebtAnalysis,AutoImprovement,EnhancedTest,EdgeCases,SecurityScan,OptimPerf machine
+    class Prompting,Day1,Day2,TestRun,Maintenance hybrid
+    class ExploreMore,IterationCheck,TestPassing,IssueDetected,NewFeatures common
+    class Deployment output
+    
+    subgraph "Human Oversight"
+        HumanReviewArch
+        HumanReviewCode
+        HumanDebug
+    end
+    
+    subgraph "AI Generation Phase"
+        ParallelGen
+        AITests
+        EnhancedTest
+        EdgeCases
+    end
+    
+    subgraph "AI Debugging Phase"
+        ErrorAnalysis
+        BatchFix
+        TestRun
+    end
+    
+    subgraph "Deployment & Maintenance"
+        AIMonitoring
+        SelfHealing
+        Maintenance
+        AIRefactoring
+        TechDebtAnalysis
+        AutoImprovement
+    end

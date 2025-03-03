@@ -1,0 +1,74 @@
+/* Extended TOC container styles for taller display */
+.toc-container {
+    position: sticky;
+    top: 1rem;
+    max-height: 90vh !important; /* Increase from default to use most of the viewport height */
+    overflow-y: auto; /* Keep auto overflow in case content is still too long */
+    padding-right: 1rem;
+    padding-bottom: 2rem; /* Add some padding at the bottom */
+    border-right: 1px solid #e5e7eb;
+}
+
+/* Allow the TOC to stretch further down the page */
+#toc-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+/* Make TOC links more compact to fit more on screen */
+.toc-link {
+    display: block;
+    padding: 0.125rem 0; /* Reduce padding to fit more links */
+    color: #4b5563;
+    text-decoration: none;
+    transition: color 0.2s;
+    line-height: 1.3; /* Slightly tighter line height */
+}
+
+/* Improve indentation for level 3 headings */
+.toc-link.level-3 {
+    padding-left: 1.5rem;
+    font-size: 0.9rem;
+    border-left: 2px solid #e5e7eb;
+    margin-left: 0.5rem;
+}
+
+/* Active link highlighting */
+.toc-link.active {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+/* Make the TOC heading more compact */
+.toc-container h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem; /* Reduce margin to save space */
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    color: #1e40af;
+}
+
+/* For main content area, give it a max-height to match TOC */
+.markdown-content {
+    max-height: none; /* Remove any max-height limits */
+}
+
+/* Ensure the main content area can scroll independently if needed */
+.card {
+    height: auto;
+    max-height: none;
+}
+
+/* Stretch the main container to use full viewport height */
+main.flex-grow {
+    min-height: calc(100vh - 200px); /* Adjust based on your header/footer height */
+}
+
+/* On larger screens, make the TOC take the full height */
+@media (min-height: 800px) {
+    .toc-container {
+        max-height: calc(100vh - 250px) !important; /* Even taller on large screens */
+    }
+}
