@@ -1,0 +1,120 @@
+/* Add this to your static/css directory as markdown-reader-fix.css */
+
+/* Make the markdown content container extend to the bottom of the page */
+.markdown-content-container {
+    height: calc(100vh - 220px) !important; /* Adjusted to take up more space */
+    max-height: none !important; /* Remove max-height limit */
+    overflow-y: auto;
+    border-radius: 0.5rem;
+    padding-right: 1rem;
+    margin-bottom: 1rem;
+    scroll-behavior: smooth;
+}
+
+/* Auto resize the TOC container to match */
+.toc-container {
+    height: calc(100vh - 220px) !important;
+    max-height: none !important;
+    overflow-y: auto;
+    position: sticky !important;
+    top: 1rem !important;
+}
+
+/* Blue color scheme for headings - dark to light as level increases */
+.markdown-content h1 {
+    color: #0c4a9d !important; /* Very dark blue for h1 */
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.markdown-content h2 {
+    color: #1e56b3 !important; /* Dark blue for h2 */
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+}
+
+.markdown-content h3 {
+    color: #2870d8 !important; /* Medium blue for h3 */
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.markdown-content h4 {
+    color: #3894f5 !important; /* Light blue for h4 */
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.markdown-content h5 {
+    color: #56aeff !important; /* Lighter blue for h5 */
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.markdown-content h6 {
+    color: #78c3ff !important; /* Very light blue for h6 */
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Override the previous colors for the emphasis words */
+.markdown-content .text-amber-500,
+.markdown-content strong {
+    color: #1e56b3 !important; /* Use blue instead of amber */
+}
+
+/* Specific terms that were previously colored */
+.markdown-content .text-red-600,
+.markdown-content strong:contains("Traditional") {
+    color: #dc2626 !important; /* Keep Traditional red */
+}
+
+.markdown-content .text-purple-600,
+.markdown-content strong:contains("AI-Assisted") {
+    color: #9333ea !important; /* Keep AI-Assisted purple */
+}
+
+.markdown-content .text-green-500,
+.markdown-content strong:contains("AI-First"),
+.markdown-content strong:contains("AI-first") {
+    color: #10b981 !important; /* Keep AI-First green */
+}
+
+/* Dark mode adjustments */
+body.dark-theme .markdown-content h1 {
+    color: #60a5fa !important; /* Light blue for h1 in dark mode */
+}
+
+body.dark-theme .markdown-content h2 {
+    color: #93c5fd !important; /* Lighter blue for h2 in dark mode */
+}
+
+body.dark-theme .markdown-content h3 {
+    color: #bfdbfe !important; /* Even lighter blue for h3 in dark mode */
+}
+
+body.dark-theme .markdown-content h4,
+body.dark-theme .markdown-content h5,
+body.dark-theme .markdown-content h6 {
+    color: #dbeafe !important; /* Lightest blue for h4-h6 in dark mode */
+}
+
+/* Adjust the background of the content container in dark mode for better contrast */
+body.dark-theme .markdown-content-container {
+    background-color: #1f2937; /* gray-800 */
+    border: 1px solid #374151; /* gray-700 */
+}

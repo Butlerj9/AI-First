@@ -1,4 +1,4 @@
-// Enhanced markdown renderer with support for all heading levels
+// Enhanced markdown renderer with color customizations
 window.renderMarkdown = function(markdown) {
     if (!markdown) return '';
     
@@ -116,13 +116,13 @@ window.renderMarkdown = function(markdown) {
         html = html.replace(tableRegex, tableHTML);
     });
     
-    // Step 3: Handle all heading levels properly
-    html = html.replace(/^# (.*$)/gm, '<h1 class="text-3xl font-bold text-blue-800 mb-6 mt-8">$1</h1>');
-    html = html.replace(/^## (.*$)/gm, '<h2 class="text-2xl font-bold text-blue-800 mt-8 mb-4" id="$1">$1</h2>');
-    html = html.replace(/^### (.*$)/gm, '<h3 class="text-xl font-semibold text-blue-700 mt-6 mb-2" id="$1">$1</h3>');
-    html = html.replace(/^#### (.*$)/gm, '<h4 class="text-lg font-semibold text-blue-600 mt-4 mb-1" id="$1">$1</h4>');
-    html = html.replace(/^##### (.*$)/gm, '<h5 class="text-base font-semibold text-blue-500 mt-3 mb-1" id="$1">$1</h5>');
-    html = html.replace(/^###### (.*$)/gm, '<h6 class="text-sm font-semibold text-blue-500 mt-3 mb-1" id="$1">$1</h6>');
+// Step 3: Handle all heading levels properly without assigning colors
+html = html.replace(/^# (.*$)/gm, '<h1 class="text-3xl font-bold mb-6 mt-8">$1</h1>');
+html = html.replace(/^## (.*$)/gm, '<h2 class="text-2xl font-bold mt-8 mb-4" id="$1">$1</h2>');
+html = html.replace(/^### (.*$)/gm, '<h3 class="text-xl font-semibold mt-6 mb-2" id="$1">$1</h3>');
+html = html.replace(/^#### (.*$)/gm, '<h4 class="text-lg font-semibold mt-4 mb-1" id="$1">$1</h4>');
+html = html.replace(/^##### (.*$)/gm, '<h5 class="text-base font-semibold mt-3 mb-1" id="$1">$1</h5>');
+html = html.replace(/^###### (.*$)/gm, '<h6 class="text-sm font-semibold mt-3 mb-1" id="$1">$1</h6>');
     
     // Step 4: Pre-processing for the numbered list with subheadings pattern
     html = html.replace(/^(\d+)\.\s+(.*?):\s*$/gm, function(match, number, title) {
@@ -192,8 +192,20 @@ window.renderMarkdown = function(markdown) {
     // Step 7: Handle paragraphs (non-heading, non-list lines)
     html = html.replace(/^(?!<h|<ul|<ol|<li|<\/ul|<\/ol|<table|<\/table|<tr|<\/tr|<td|<th|<tbody|<thead|<!--NUMBERED_HEADING|<div|<\/div|$)(.*$)/gm, '<p class="mb-4">$1</p>');
     
-    // Step 8: Style enhancements
-    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    // Step 8: Style enhancements with custom colors for specific terms
+    // First generic bold styling in orangish-yellow
+    html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="text-amber-500">$1</strong>');
+    
+    // Then override for specific terms when bold
+    // "Traditional" in bold becomes red
+    html = html.replace(/<strong class="text-amber-500">(.*?Traditional.*?)<\/strong>/g, '<strong class="text-red-600">$1</strong>');
+    
+    // "AI-Assisted" in bold becomes purple
+    html = html.replace(/<strong class="text-amber-500">(.*?AI-Assisted.*?)<\/strong>/g, '<strong class="text-purple-600">$1</strong>');
+    
+    // "AI-First" or "AI-first" in bold becomes bright green
+    html = html.replace(/<strong class="text-amber-500">(.*?AI-[Ff]irst.*?)<\/strong>/g, '<strong class="text-green-500">$1</strong>');
+    
     html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
     html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-blue-600 hover:underline">$1</a>');
     html = html.replace(/^\-\-\-$/gm, '<hr class="my-6 border-t border-gray-300">');

@@ -536,3 +536,140 @@
 2025-03-03 19:36:49,911 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 19:36:49] "GET /api/files/ai-assisted-workflow.txt HTTP/1.1" 200 -
 2025-03-03 19:36:49,916 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 19:36:49] "GET /api/files/ai-first-workflow.txt HTTP/1.1" 200 -
 2025-03-03 19:36:49,922 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 19:36:49] "GET /static/js/components/executive-summary.js HTTP/1.1" 200 -
+2025-03-03 21:54:52,032 - app - INFO - Successfully loaded markdown file with 20 headings
+2025-03-03 21:54:52,065 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET / HTTP/1.1" 200 -
+2025-03-03 21:54:52,102 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/css/dark-mode-colors.css HTTP/1.1" 200 -
+2025-03-03 21:54:52,104 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/js/reading-progress-bar.js HTTP/1.1" 200 -
+2025-03-03 21:54:52,106 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/js/content-search.js HTTP/1.1" 200 -
+2025-03-03 21:54:52,107 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/js/improved-toc-navigation.js HTTP/1.1" 200 -
+2025-03-03 21:54:52,109 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/js/email-pdf.js HTTP/1.1" 200 -
+2025-03-03 21:54:52,111 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/css/dark-theme.css HTTP/1.1" 200 -
+2025-03-03 21:54:52,114 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/css/toc-fixes.css HTTP/1.1" 200 -
+2025-03-03 21:54:52,116 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/css/chart-overrides.css HTTP/1.1" 200 -
+2025-03-03 21:54:52,122 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/js/markdown-renderer.js HTTP/1.1" 200 -
+2025-03-03 21:54:52,122 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/js/fixed-toc-height.js HTTP/1.1" 200 -
+2025-03-03 21:54:52,124 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/js/tab-navigation-fix.js HTTP/1.1" 200 -
+2025-03-03 21:54:52,125 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/js/app.js HTTP/1.1" 200 -
+2025-03-03 21:54:52,127 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/js/theme-toggle.js HTTP/1.1" 200 -
+2025-03-03 21:54:52,132 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/js/sources-integration.js HTTP/1.1" 200 -
+2025-03-03 21:54:52,132 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/js/unified-mermaid.js HTTP/1.1" 200 -
+2025-03-03 21:54:52,345 - app - ERROR - 404 error: /static/images/
+2025-03-03 21:54:52,345 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "[33mGET /static/images/ HTTP/1.1[0m" 404 -
+2025-03-03 21:54:52,351 - app - INFO - Successfully processed markdown file: 144514 characters
+2025-03-03 21:54:52,352 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /api/markdown HTTP/1.1" 200 -
+2025-03-03 21:54:52,353 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /api/files/traditional-workflow.txt HTTP/1.1" 200 -
+2025-03-03 21:54:52,357 - app - ERROR - 404 error: /favicon.ico
+2025-03-03 21:54:52,357 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-03 21:54:52,377 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /api/files/ai-assisted-workflow.txt HTTP/1.1" 200 -
+2025-03-03 21:54:52,385 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /api/files/ai-first-workflow.txt HTTP/1.1" 200 -
+2025-03-03 21:54:52,392 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 21:54:52] "GET /static/js/components/executive-summary.js HTTP/1.1" 200 -
+2025-03-03 22:12:10,450 - app - INFO - BASE_DIR: C:\Projects\ai-first-app
+2025-03-03 22:12:10,450 - app - INFO - DATA_DIR: C:\Projects\ai-first-app\data
+2025-03-03 22:12:10,450 - app - INFO - STATIC_DIR: C:\Projects\ai-first-app\static
+2025-03-03 22:12:10,450 - app - INFO - TEMPLATE_DIR: C:\Projects\ai-first-app\templates
+2025-03-03 22:12:10,451 - app - INFO - DATA_DIR exists or was created: C:\Projects\ai-first-app\data
+2025-03-03 22:12:10,478 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-03 22:12:10,478 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-03 22:12:10,479 - werkzeug - INFO -  * Restarting with stat
+2025-03-03 22:12:10,707 - app - INFO - BASE_DIR: C:\Projects\ai-first-app
+2025-03-03 22:12:10,707 - app - INFO - DATA_DIR: C:\Projects\ai-first-app\data
+2025-03-03 22:12:10,707 - app - INFO - STATIC_DIR: C:\Projects\ai-first-app\static
+2025-03-03 22:12:10,707 - app - INFO - TEMPLATE_DIR: C:\Projects\ai-first-app\templates
+2025-03-03 22:12:10,708 - app - INFO - DATA_DIR exists or was created: C:\Projects\ai-first-app\data
+2025-03-03 22:12:10,724 - werkzeug - WARNING -  * Debugger is active!
+2025-03-03 22:12:10,727 - werkzeug - INFO -  * Debugger PIN: 376-645-893
+2025-03-03 22:12:17,766 - app - INFO - Successfully loaded markdown file with 20 headings
+2025-03-03 22:12:17,787 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET / HTTP/1.1" 200 -
+2025-03-03 22:12:17,818 - app - ERROR - 404 error: /static/css/markdown-reader-fix.css
+2025-03-03 22:12:17,819 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "[33mGET /static/css/markdown-reader-fix.css HTTP/1.1[0m" 404 -
+2025-03-03 22:12:17,964 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/css/dark-theme.css HTTP/1.1" 200 -
+2025-03-03 22:12:17,965 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/css/chart-overrides.css HTTP/1.1" 200 -
+2025-03-03 22:12:17,966 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/js/tab-navigation-fix.js HTTP/1.1" 200 -
+2025-03-03 22:12:17,969 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/js/app.js HTTP/1.1" 200 -
+2025-03-03 22:12:17,971 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/js/theme-toggle.js HTTP/1.1" 200 -
+2025-03-03 22:12:17,971 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/css/toc-fixes.css HTTP/1.1" 200 -
+2025-03-03 22:12:17,971 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/js/fixed-toc-height.js HTTP/1.1" 200 -
+2025-03-03 22:12:17,972 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/css/dark-mode-colors.css HTTP/1.1" 200 -
+2025-03-03 22:12:17,975 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/js/markdown-renderer.js HTTP/1.1" 200 -
+2025-03-03 22:12:17,977 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/js/sources-integration.js HTTP/1.1" 200 -
+2025-03-03 22:12:17,979 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/js/unified-mermaid.js HTTP/1.1" 200 -
+2025-03-03 22:12:17,980 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/js/reading-progress-bar.js HTTP/1.1" 200 -
+2025-03-03 22:12:17,982 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/js/improved-toc-navigation.js HTTP/1.1" 200 -
+2025-03-03 22:12:17,982 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/js/content-search.js HTTP/1.1" 200 -
+2025-03-03 22:12:17,983 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:17] "GET /static/js/email-pdf.js HTTP/1.1" 200 -
+2025-03-03 22:12:18,283 - app - ERROR - 404 error: /static/css/markdown-reader-fix.css
+2025-03-03 22:12:18,283 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:18] "[33mGET /static/css/markdown-reader-fix.css HTTP/1.1[0m" 404 -
+2025-03-03 22:12:18,335 - app - ERROR - 404 error: /static/images/
+2025-03-03 22:12:18,335 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:18] "[33mGET /static/images/ HTTP/1.1[0m" 404 -
+2025-03-03 22:12:18,338 - app - INFO - Successfully processed markdown file: 144514 characters
+2025-03-03 22:12:18,339 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:18] "GET /api/files/traditional-workflow.txt HTTP/1.1" 200 -
+2025-03-03 22:12:18,340 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:18] "GET /api/markdown HTTP/1.1" 200 -
+2025-03-03 22:12:18,342 - app - ERROR - 404 error: /favicon.ico
+2025-03-03 22:12:18,343 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-03 22:12:18,402 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:18] "GET /api/files/ai-assisted-workflow.txt HTTP/1.1" 200 -
+2025-03-03 22:12:18,407 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:18] "GET /api/files/ai-first-workflow.txt HTTP/1.1" 200 -
+2025-03-03 22:12:18,411 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:12:18] "GET /static/js/components/executive-summary.js HTTP/1.1" 200 -
+2025-03-03 22:13:18,554 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:13:18] "[36mGET /api/files/traditional-workflow.txt HTTP/1.1[0m" 304 -
+2025-03-03 22:13:18,555 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:13:18] "[36mGET /api/files/ai-first-workflow.txt HTTP/1.1[0m" 304 -
+2025-03-03 22:13:18,555 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 22:13:18] "[36mGET /api/files/ai-assisted-workflow.txt HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,158 - app - INFO - Successfully loaded markdown file with 20 headings
+2025-03-03 23:34:21,159 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "GET / HTTP/1.1" 200 -
+2025-03-03 23:34:21,183 - app - ERROR - 404 error: /static/css/markdown-reader-fix.css
+2025-03-03 23:34:21,184 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[33mGET /static/css/markdown-reader-fix.css HTTP/1.1[0m" 404 -
+2025-03-03 23:34:21,188 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/css/toc-fixes.css HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,189 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/css/dark-theme.css HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,190 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/css/chart-overrides.css HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,192 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/css/dark-mode-colors.css HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,216 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/js/markdown-renderer.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,217 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/js/fixed-toc-height.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,218 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/js/tab-navigation-fix.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,222 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,223 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/js/theme-toggle.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,225 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/js/sources-integration.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,227 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/js/unified-mermaid.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,229 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/js/reading-progress-bar.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,233 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/js/improved-toc-navigation.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,234 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/js/content-search.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,234 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/js/email-pdf.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:21,385 - app - ERROR - 404 error: /static/css/markdown-reader-fix.css
+2025-03-03 23:34:21,386 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[33mGET /static/css/markdown-reader-fix.css HTTP/1.1[0m" 404 -
+2025-03-03 23:34:21,433 - app - ERROR - 404 error: /static/images/
+2025-03-03 23:34:21,434 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[33mGET /static/images/ HTTP/1.1[0m" 404 -
+2025-03-03 23:34:21,438 - app - INFO - Successfully processed markdown file: 144514 characters
+2025-03-03 23:34:21,439 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "GET /api/files/traditional-workflow.txt HTTP/1.1" 200 -
+2025-03-03 23:34:21,439 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "GET /api/markdown HTTP/1.1" 200 -
+2025-03-03 23:34:21,461 - app - ERROR - 404 error: /favicon.ico
+2025-03-03 23:34:21,461 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-03 23:34:21,503 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "GET /api/files/ai-assisted-workflow.txt HTTP/1.1" 200 -
+2025-03-03 23:34:21,507 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "GET /api/files/ai-first-workflow.txt HTTP/1.1" 200 -
+2025-03-03 23:34:21,513 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:21] "[36mGET /static/js/components/executive-summary.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,507 - app - INFO - Successfully loaded markdown file with 20 headings
+2025-03-03 23:34:55,507 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "GET / HTTP/1.1" 200 -
+2025-03-03 23:34:55,525 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/js/markdown-renderer.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,526 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/js/fixed-toc-height.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,527 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/js/theme-toggle.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,528 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,529 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/js/tab-navigation-fix.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,530 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/js/sources-integration.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,535 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/js/unified-mermaid.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,537 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/js/reading-progress-bar.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,539 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/js/improved-toc-navigation.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,541 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/js/content-search.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,542 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/js/email-pdf.js HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,543 - app - ERROR - 404 error: /static/css/markdown-reader-fix.css
+2025-03-03 23:34:55,544 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[33mGET /static/css/markdown-reader-fix.css HTTP/1.1[0m" 404 -
+2025-03-03 23:34:55,548 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/css/dark-theme.css HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,551 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/css/toc-fixes.css HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,552 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/css/chart-overrides.css HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,553 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/css/dark-mode-colors.css HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,710 - app - ERROR - 404 error: /static/css/markdown-reader-fix.css
+2025-03-03 23:34:55,710 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[33mGET /static/css/markdown-reader-fix.css HTTP/1.1[0m" 404 -
+2025-03-03 23:34:55,755 - app - ERROR - 404 error: /static/images/
+2025-03-03 23:34:55,755 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[33mGET /static/images/ HTTP/1.1[0m" 404 -
+2025-03-03 23:34:55,758 - app - INFO - Successfully processed markdown file: 144514 characters
+2025-03-03 23:34:55,759 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "GET /api/markdown HTTP/1.1" 200 -
+2025-03-03 23:34:55,759 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /api/files/traditional-workflow.txt HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,821 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /api/files/ai-assisted-workflow.txt HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,825 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /api/files/ai-first-workflow.txt HTTP/1.1[0m" 304 -
+2025-03-03 23:34:55,829 - werkzeug - INFO - 127.0.0.1 - - [03/Mar/2025 23:34:55] "[36mGET /static/js/components/executive-summary.js HTTP/1.1[0m" 304 -
