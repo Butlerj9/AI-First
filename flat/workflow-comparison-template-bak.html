@@ -1,0 +1,233 @@
+<div class="card shadow-md">
+    <div class="p-6">
+        <h2 class="text-xl font-semibold mb-4 flex items-center">
+            <svg class="w-6 h-6 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            AI-First Workflow Comparison
+        </h2>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-6">
+            AI-first development fundamentally transforms how software is created, enabling parallel exploration of multiple architectures and implementations simultaneously. This dramatically increases productivity while providing higher quality solutions.
+        </p>
+        
+        <div class="mb-8 overflow-auto">
+            <div class="w-full flex justify-center">
+                <img src="/static/images/productivity-comparison-diagram.svg" alt="Comparison of Traditional vs AI-First Development Workflows" class="w-full max-w-4xl" />
+            </div>
+        </div>
+        
+        <h3 class="text-lg font-semibold mb-3 text-blue-700 dark:text-blue-300">The Dual-LLM Quality Strategy</h3>
+        
+        <div class="border rounded-lg p-5 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-blue-200 dark:border-blue-700 shadow-sm">
+                    <h4 class="font-semibold text-lg mb-2 text-blue-700 dark:text-blue-300">Primary LLM: Generation & Implementation</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">
+                        The primary LLM functions as your coding partner, generating implementation code based on your requirements. It handles:
+                    </p>
+                    <ul class="space-y-2 pl-5 list-disc text-gray-700 dark:text-gray-300">
+                        <li>Initial code generation from specifications</li>
+                        <li>Architecture implementation</li>
+                        <li>Feature development</li>
+                        <li>Test creation</li>
+                        <li>Documentation generation</li>
+                    </ul>
+                    <div class="mt-3 p-3 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-30 rounded border border-blue-100 dark:border-blue-800">
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                            <strong class="text-blue-700 dark:text-blue-300">Optimal choice:</strong> A model with strong code generation capabilities like Claude 3.7 Sonnet
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-blue-200 dark:border-blue-700 shadow-sm">
+                    <h4 class="font-semibold text-lg mb-2 text-blue-700 dark:text-blue-300">Secondary LLM: Verification & Learning</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">
+                        The secondary LLM serves as your quality assurance partner and technical mentor:
+                    </p>
+                    <ul class="space-y-2 pl-5 list-disc text-gray-700 dark:text-gray-300">
+                        <li>Code review and quality assessment</li>
+                        <li>Security vulnerability detection</li>
+                        <li>Performance optimization suggestions</li>
+                        <li>Architectural pattern validation</li>
+                        <li>Answering specific technique questions</li>
+                        <li>Explaining unfamiliar code patterns</li>
+                    </ul>
+                    <div class="mt-3 p-3 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-30 rounded border border-blue-100 dark:border-blue-800">
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                            <strong class="text-blue-700 dark:text-blue-300">Optimal choice:</strong> A model with strong reasoning and explanation abilities like GPT-4 or Claude 3 Opus
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <h4 class="font-semibold text-lg mb-3 text-blue-700 dark:text-blue-300">Implementation: Dual-LLM Conversation Workflow</h4>
+            
+            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-blue-200 dark:border-blue-700">
+                <ol class="space-y-3 pl-5 list-decimal">
+                    <li class="text-gray-700 dark:text-gray-300">
+                        <strong class="text-blue-700 dark:text-blue-300">Generate code</strong> with your primary LLM based on project requirements
+                    </li>
+                    <li class="text-gray-700 dark:text-gray-300">
+                        <strong class="text-blue-700 dark:text-blue-300">Review generated code</strong> and identify areas that need deeper understanding
+                    </li>
+                    <li class="text-gray-700 dark:text-gray-300">
+                        <strong class="text-blue-700 dark:text-blue-300">Consult secondary LLM</strong> with specific questions about the implementation:
+                        <div class="mt-2 mb-3 pl-4 border-l-4 border-blue-200 dark:border-blue-800">
+                            <p class="text-sm italic">
+                                "Can you explain this authentication pattern used in the generated code?"<br>
+                                "What are potential security issues in this API implementation?"<br>
+                                "How could this database query be optimized further?"
+                            </p>
+                        </div>
+                    </li>
+                    <li class="text-gray-700 dark:text-gray-300">
+                        <strong class="text-blue-700 dark:text-blue-300">Learn and upskill</strong> from the secondary LLM's detailed explanations
+                    </li>
+                    <li class="text-gray-700 dark:text-gray-300">
+                        <strong class="text-blue-700 dark:text-blue-300">Return to primary LLM</strong> with improvement requests based on the insights gained
+                    </li>
+                    <li class="text-gray-700 dark:text-gray-300">
+                        <strong class="text-blue-700 dark:text-blue-300">Iterate improvements</strong> until code meets quality standards
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div class="border rounded-lg p-4 bg-white dark:bg-gray-800">
+                <h3 class="text-lg font-semibold mb-2 text-blue-700 dark:text-blue-300">Key Benefits</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>Accelerated Development:</strong> Explore multiple solutions in parallel</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>Better Architecture:</strong> Evaluate multiple design approaches</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>Higher Quality:</strong> Secondary LLM provides specialized review</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span><strong>Continuous Learning:</strong> Developers upskill while building</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="border rounded-lg p-4 bg-white dark:bg-gray-800">
+                <h3 class="text-lg font-semibold mb-2 text-blue-700 dark:text-blue-300">Implementation Considerations</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span><strong>Cost Management:</strong> Balance using primary vs. specialized models</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span><strong>Workflow Integration:</strong> Create clear handoffs between LLMs</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span><strong>Context Management:</strong> Maintain relevant information between systems</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span><strong>Learning Framework:</strong> Create structured process for skill development</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Example implementation -->
+        <div class="border rounded-lg p-5 mb-6">
+            <h3 class="text-lg font-semibold mb-3 text-blue-700 dark:text-blue-300">Dual-LLM Implementation Example</h3>
+            <div class="bg-gray-800 text-white p-4 rounded text-sm font-mono whitespace-pre overflow-x-auto">
+// JavaScript example of a Dual-LLM workflow orchestration
+
+async function dualLLMWorkflow(projectRequirement) {
+  try {
+    // Step 1: Generate code with primary LLM (Claude 3.7 Sonnet for code generation)
+    const generatedCode = await callLLM({
+      model: "claude-3-7-sonnet",
+      prompt: `Generate JavaScript code for the following requirement:\n\n${projectRequirement}\n\nPlease include tests, error handling, and documentation.`,
+      temperature: 0.2
+    });
+    
+    // Step 2: Developer reviews code and identifies areas that need explanation
+    // (This would be done by the human in the actual workflow)
+    const questionsToAsk = [
+      "Can you explain the authentication pattern used in this code?",
+      "What are the security implications of the API implementation?",
+      "How could the database queries be optimized further?",
+      "Is this error handling approach following best practices?"
+    ];
+    
+    // Step 3: Consult secondary LLM for code quality and learning
+    const codeReview = await callLLM({
+      model: "gpt-4",  // Using GPT-4 for detailed explanations and reasoning
+      prompt: `Review this code and answer the following questions:\n\n${generatedCode}\n\nQuestions:\n${questionsToAsk.join('\n')}\n\nPlease provide detailed explanations that would help a mid-level developer understand these concepts more deeply.`,
+      temperature: 0.3
+    });
+    
+    // Step 4: Return to primary LLM with improvements based on review
+    const improvedCode = await callLLM({
+      model: "claude-3-7-sonnet",
+      prompt: `Please improve the following code based on this review feedback:\n\nOriginal Code:\n${generatedCode}\n\nReview Feedback:\n${codeReview}\n\nPlease implement all the suggested improvements.`,
+      temperature: 0.2
+    });
+    
+    // Step 5: Conduct a final security review with secondary LLM
+    const securityAudit = await callLLM({
+      model: "gpt-4",
+      prompt: `Perform a security audit on this code. Identify any potential security vulnerabilities or issues:\n\n${improvedCode}\n\nFocus on authentication, authorization, input validation, data protection, and other security best practices.`,
+      temperature: 0.2
+    });
+    
+    // Return final results with all context for human review
+    return {
+      originalRequirement: projectRequirement,
+      initialCode: generatedCode,
+      expertReview: codeReview,
+      improvedCode: improvedCode,
+      securityAudit: securityAudit
+    };
+  } catch (error) {
+    console.error("Dual-LLM workflow error:", error);
+    return { error: error.message };
+  }
+}
+
+// Example usage
+const projectSpec = "Create a secure user authentication system with email verification, password reset, and account management features.";
+const developmentResult = await dualLLMWorkflow(projectSpec);
+
+// The developer now has:
+// 1. Working implementation code
+// 2. Detailed explanations of the techniques used
+// 3. Security review and improvements
+// 4. Learning opportunities from expert review</div>
+        </div>
+
+        <div class="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border border-yellow-200 dark:border-yellow-700 rounded">
+            <p class="text-gray-800 dark:text-gray-200">
+                <strong class="text-yellow-700 dark:text-yellow-400">Key Insight:</strong> The Dual-LLM approach combines maximum productivity with continuous learning. While the primary LLM accelerates implementation, the secondary LLM ensures quality and helps developers internalize advanced techniques. This creates a virtuous cycle where teams become more skilled while delivering better software faster.
+            </p>
+        </div>

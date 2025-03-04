@@ -98,15 +98,16 @@ These factors explain why some teams report modest improvements with AI while ot
 Raw code generation rates with AI are extraordinary—LLMs can produce hundreds of lines in seconds. However, raw output isn't the complete story. Understanding the full lifecycle gives a clearer picture:
 
 **Traditional Development**:
-- Developers might average 750 LOC/day (post-debugging productivity)
-- 6k-12k average raw speed (pre-debugging)
-- Code is written incrementally with continuous testing and refinement
+- Developers usually average 100-400 LOC/day (post-debugging productivity)
+- 3k average raw speed (pre-debugging)
+- Code is written incrementally with continuous testing and refinement, generally over weeks or months
+- Bug fixes are often pushed until after release because the slow pace regularly creates time and budget crunches on core functionality implementation
 
 **AI-First Development**:
-- 12k LOC/day (post-debugging productivity)
-- 300k LOC/day average raw speed (pre-debugging)
-- After debugging and refinement, perhaps 50-70% remains as production-quality code
-- The entire cycle (generation + debugging) might take a few hours
+- 3k-10k LOC/day (post-debugging productivity)
+- 300k LOC/day average raw speed (pre-debugging with autoprompting)
+- After refinement and refactoring, perhaps 50-70% of the post-debugging output remains as production-quality code
+- The entire cycle (generation + debugging) might take a few hours to a few days
 
 This represents a net productivity gain of 16× in terms of finalized LOC per day. However, there's a critical distinction between raw output and quality code. Teams adopting AI-first methods need robust verification processes to ensure the AI-generated code meets quality standards.
 

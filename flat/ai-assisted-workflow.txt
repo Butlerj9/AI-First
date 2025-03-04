@@ -1,0 +1,38 @@
+flowchart TD
+    classDef human fill:#CC3333,color:#D9D9D9,stroke:#990000
+    classDef machine fill:#3355AA,color:#D9D9D9,stroke:#223377
+    classDef common fill:#33AA66,color:#D9D9D9,stroke:#227744
+    classDef input fill:#EE8844,color:#D9D9D9,stroke:#BB6622
+    classDef output fill:#EE8844,color:#D9D9D9,stroke:#BB6622
+    classDef hybrid fill:#9955AA,color:#D9D9D9,stroke:#773388
+
+    Start([Start Project]) --> Requirements[Gather Requirements]
+    Requirements --> Design[Create Design & Architecture]
+    Design --> Implementation[Code Implementation]
+    Implementation --> AIAssist[AI Code Suggestions]
+    AIAssist --> DevReview[Developer Reviews & Modifies]
+    DevReview --> Implementation
+    DevReview --> Testing[Testing with AI-Generated Tests]
+    Testing --> BugFound{Bugs Found?}
+    BugFound -- Yes --> Debugging[Debugging with AI Assistance]
+    Debugging --> Testing
+    BugFound -- No --> CodeReview[AI + Human Code Review]
+    CodeReview --> ReviewIssues{Issues?}
+    ReviewIssues -- Yes --> Implementation
+    ReviewIssues -- No --> Documentation[AI-Assisted Documentation]
+    Documentation --> Deployment[Deploy Code]
+    Deployment --> Maintenance[Maintenance & Updates]
+    
+    class Start input
+    class Requirements,Design,DevReview human
+    class AIAssist,Debugging machine
+    class Implementation,Testing,CodeReview,Documentation hybrid
+    class BugFound,ReviewIssues common
+    class Deployment output
+    class Maintenance human
+    
+    subgraph "Developer-Led, AI-Enhanced"
+        Implementation
+        AIAssist
+        DevReview
+    end

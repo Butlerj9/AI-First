@@ -316,7 +316,7 @@
             <div class="container mx-auto px-4 py-6">
                 <h1 class="text-3xl font-bold text-blue-700">AI-First Development Portal</h1>
                 <p class="text-gray-600 mt-2">
-                    Exploring the transformative impact of AI-First methodologies on software development
+                    Streamlining software innovation with AI-first principles
                 </p>
             </div>
         </header>
@@ -712,7 +712,7 @@
                             <!-- AI-First Productivity - Better contrast -->
                             <rect x="500" y="630" width="300" height="60" rx="5" ry="5" fill="#bfdbfe" class="diagram-data-box" />
                             <text x="650" y="650" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e40af" class="diagram-data-title">AI-First Development</text>
-                            <text x="650" y="675" font-family="Arial" font-size="14" text-anchor="middle" fill="#334155" class="diagram-data-text">12k LOC/day (300k LOC/day average raw speed)</text>
+                            <text x="650" y="675" font-family="Arial" font-size="14" text-anchor="middle" fill="#334155" class="diagram-data-text">12k LOC/day (300k average raw speed)</text>
                             
                             <!-- Comparison arrow - More visible with SMALLER stacked text in GREEN moved UP -->
                             <line x1="410" y1="660" x2="490" y2="660" stroke="#16a34a" stroke-width="3" class="diagram-arrow-special" />
@@ -1038,38 +1038,200 @@
         </div>
     </template>
     
-    <!-- Workflows Tab Template -->
-    <template id="workflows-template">
-        <div class="grid grid-cols-1 gap-6">
-            <div class="card">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-3 text-center">Development Workflow Comparison</h2>
-                    <p class="text-center mb-6">Visual comparison of traditional, AI-assisted, and AI-first development workflows</p>
+ <!-- Workflows Tab Template -->
+<template id="workflows-template">
+    <div class="grid grid-cols-1 gap-6">
+        <div class="card">
+            <div class="p-6">
+                <h2 class="text-xl font-semibold mb-3 text-center">Development Workflow Comparison</h2>
+                <p class="text-center mb-6">Visual comparison of traditional, AI-assisted, and AI-first development workflows</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="border rounded-lg p-4">
+                        <h3 class="text-xl font-semibold mb-3 text-center">Traditional Workflow</h3>
+                        <div class="mermaid-diagram" id="traditional-workflow">
+                            <!-- Diagram will be loaded here -->
+                            <div class="text-center p-4">Loading traditional workflow diagram...</div>
+                        </div>
+                        <p class="text-center text-gray-600 dark:text-gray-400 mt-4 text-sm italic">
+                            Sequential, developer-centric workflow with manual tasks and limited parallelization
+                        </p>
+                    </div>
+                    <div class="border rounded-lg p-4">
+                        <h3 class="text-xl font-semibold mb-3 text-center">AI-Assisted Workflow</h3>
+                        <div class="mermaid-diagram" id="ai-assisted-workflow">
+                            <!-- Diagram will be loaded here -->
+                            <div class="text-center p-4">Loading AI-assisted workflow diagram...</div>
+                        </div>
+                        <p class="text-center text-gray-600 dark:text-gray-400 mt-4 text-sm italic">
+                            Developer-led process with AI suggestions and assistance at key points
+                        </p>
+                    </div>
+                    <div class="border rounded-lg p-4">
+                        <h3 class="text-xl font-semibold mb-3 text-center">AI-First Workflow</h3>
+                        <div class="mermaid-diagram" id="ai-first-workflow">
+                            <!-- Diagram will be loaded here -->
+                            <div class="text-center p-4">Loading AI-first workflow diagram...</div>
+                        </div>
+                        <p class="text-center text-gray-600 dark:text-gray-400 mt-4 text-sm italic">
+                            Parallel exploration and generation with AI handling implementation details while humans provide strategic guidance
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                    <h3 class="text-lg font-semibold mb-2 text-blue-800 dark:text-blue-300">Key Workflow Differences</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <h4 class="font-semibold text-blue-700 dark:text-blue-400">Traditional</h4>
+                            <ul class="space-y-1 list-disc pl-5 text-sm text-gray-700 dark:text-gray-300">
+                                <li>Sequential development phases</li>
+                                <li>Single-path exploration</li>
+                                <li>Manual implementation of all code</li>
+                                <li>Human testing and debugging</li>
+                                <li>Documentation as a final phase</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-blue-700 dark:text-blue-400">AI-Assisted</h4>
+                            <ul class="space-y-1 list-disc pl-5 text-sm text-gray-700 dark:text-gray-300">
+                                <li>Mostly sequential workflow</li>
+                                <li>Human-guided with AI suggestions</li>
+                                <li>Code co-creation with human & AI</li>
+                                <li>AI helps generate tests</li>
+                                <li>Human with AI assistance for debugging</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-blue-700 dark:text-blue-400">AI-First</h4>
+                            <ul class="space-y-1 list-disc pl-5 text-sm text-gray-700 dark:text-gray-300">
+                                <li>Parallel, multi-path exploration</li>
+                                <li>Human defines requirements & reviews</li>
+                                <li>AI generates most implementation code</li>
+                                <li>Comprehensive test generation by AI</li>
+                                <li>Automated debugging with batch fixes</li>
+                                <li>Continuous documentation & maintenance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="p-6">
+                <h2 class="text-xl font-semibold mb-4">AI-First Workflow Efficiency Gains</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border rounded-lg p-4 bg-white dark:bg-gray-800">
+                        <h3 class="text-lg font-semibold mb-3">Time Allocation Comparison</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-medium">Traditional Development</h4>
+                                <div class="mt-2 bg-gray-200 dark:bg-gray-700 h-8 rounded-full overflow-hidden">
+                                    <div class="flex h-full">
+                                        <div class="bg-blue-500 h-full w-3/4" title="Coding: 70%"></div>
+                                        <div class="bg-green-500 h-full w-1/12" title="Review: 10%"></div>
+                                        <div class="bg-purple-500 h-full w-1/12" title="Architecture: 10%"></div>
+                                        <div class="bg-yellow-500 h-full w-1/12" title="Testing: 10%"></div>
+                                    </div>
+                                </div>
+                                <div class="flex text-xs mt-1 text-gray-600 dark:text-gray-400">
+                                    <span class="w-3/4 text-center">Coding (70%)</span>
+                                    <span class="w-1/12 text-center">Rev.</span>
+                                    <span class="w-1/12 text-center">Arch.</span>
+                                    <span class="w-1/12 text-center">Test</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium">AI-Assisted Development</h4>
+                                <div class="mt-2 bg-gray-200 dark:bg-gray-700 h-8 rounded-full overflow-hidden">
+                                    <div class="flex h-full">
+                                        <div class="bg-blue-500 h-full w-2/5" title="Coding: 40%"></div>
+                                        <div class="bg-green-500 h-full w-1/5" title="Review: 20%"></div>
+                                        <div class="bg-purple-500 h-full w-1/4" title="Architecture: 25%"></div>
+                                        <div class="bg-yellow-500 h-full w-3/20" title="Testing: 15%"></div>
+                                    </div>
+                                </div>
+                                <div class="flex text-xs mt-1 text-gray-600 dark:text-gray-400">
+                                    <span class="w-2/5 text-center">Coding (40%)</span>
+                                    <span class="w-1/5 text-center">Review (20%)</span>
+                                    <span class="w-1/4 text-center">Architecture (25%)</span>
+                                    <span class="w-3/20 text-center">Test</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium">AI-First Development</h4>
+                                <div class="mt-2 bg-gray-200 dark:bg-gray-700 h-8 rounded-full overflow-hidden">
+                                    <div class="flex h-full">
+                                        <div class="bg-blue-500 h-full w-3/20" title="Coding: 15%"></div>
+                                        <div class="bg-green-500 h-full w-7/20" title="Review: 35%"></div>
+                                        <div class="bg-purple-500 h-full w-2/5" title="Architecture: 40%"></div>
+                                        <div class="bg-yellow-500 h-full w-1/10" title="Testing: 10%"></div>
+                                    </div>
+                                </div>
+                                <div class="flex text-xs mt-1 text-gray-600 dark:text-gray-400">
+                                    <span class="w-3/20 text-center">Code</span>
+                                    <span class="w-7/20 text-center">Review (35%)</span>
+                                    <span class="w-2/5 text-center">Architecture (40%)</span>
+                                    <span class="w-1/10 text-center">Test</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <div class="border rounded-lg p-4">
-                            <h3 class="text-xl font-semibold mb-3 text-center">Traditional Workflow</h3>
-                            <div id="traditional-workflow" class="mermaid">
-                                <!-- Mermaid diagram will be rendered here -->
-                            </div>
-                        </div>
-                        <div class="border rounded-lg p-4">
-                            <h3 class="text-xl font-semibold mb-3 text-center">AI-Assisted Workflow</h3>
-                            <div id="ai-assisted-workflow" class="mermaid">
-                                <!-- Mermaid diagram will be rendered here -->
-                            </div>
-                        </div>
-                        <div class="border rounded-lg p-4">
-                            <h3 class="text-xl font-semibold mb-3 text-center">AI-First Workflow</h3>
-                            <div id="ai-first-workflow" class="mermaid">
-                                <!-- Mermaid diagram will be rendered here -->
+                    <div class="border rounded-lg p-4 bg-white dark:bg-gray-800">
+                        <h3 class="text-lg font-semibold mb-3">Key Productivity Metrics</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-medium">Lines of Code per Day</h4>
+                                <div class="mt-2 relative pt-1">
+                                    <div class="flex mb-2 items-center justify-between">
+                                        <div>
+                                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 dark:bg-blue-900 dark:text-blue-300">
+                                                Traditional: 750 LOC
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="relative h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                        <div style="width:7.5%" class="w-0 h-full text-center text-xs text-white bg-blue-600 rounded-full"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4 relative pt-1">
+                                    <div class="flex mb-2 items-center justify-between">
+                                        <div>
+                                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200 dark:bg-green-900 dark:text-green-300">
+                                                AI-Assisted: 1,500 LOC
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="relative h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                        <div style="width:15%" class="w-0 h-full text-center text-xs text-white bg-green-600 rounded-full"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4 relative pt-1">
+                                    <div class="flex mb-2 items-center justify-between">
+                                        <div>
+                                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-purple-600 bg-purple-200 dark:bg-purple-900 dark:text-purple-300">
+                                                AI-First: 12,000 LOC
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="relative h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                        <div style="width:100%" class="w-0 h-full text-center text-xs text-white bg-purple-600 rounded-full">16× faster</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </template>
+    </div>
+</template>
     
     <!-- Sources Tab Template -->
     <template id="sources-template">
@@ -1092,6 +1254,23 @@
         </div>
     </template>
     
+    
+<!-- Executive Summary Tab Template -->
+<template id="executive-template">
+    <div id="executive-summary-container">
+        <!-- React component will be mounted here -->
+        <div class="animate-pulse flex flex-col space-y-4">
+            <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+            <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+            <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+            <div class="h-4 bg-gray-200 rounded w-2/3"></div>
+            <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+        </div>
+    </div>
+</template>
+<!-- Updated Script Section for index.html -->
+<!-- This is just the scripts section, to be inserted near the end of the index.html file -->
+
     <!-- Main JavaScript -->
     <!-- Enhanced Markdown Renderer -->
     <script src="{{ url_for('static', filename='js/markdown-renderer.js') }}"></script>
@@ -1107,8 +1286,11 @@
     <script src="{{ url_for('static', filename='js/theme-toggle.js') }}"></script>
     
     <!-- Sources integration -->
-    <script src="static/js/sources-integration.js"></script>
+    <script src="{{ url_for('static', filename='js/sources-integration.js') }}"></script>
     
+    <!-- Unified Mermaid Handler - Replaces all previous mermaid scripts -->
+    <script src="{{ url_for('static', filename='js/unified-mermaid.js') }}"></script>
+
     <script>
         // Check if we need to create the static directory for images
         function createStaticDirectories() {
@@ -1194,84 +1376,5 @@
             setTimeout(window.fixTOCLayout, 200);
         });
     </script>
-<script src="{{ url_for('static', filename='js/mermaid-pan-zoom.js') }}"></script>
-<!-- Executive Summary Tab Template -->
-<template id="executive-template">
-    <div id="executive-summary-container">
-        <!-- React component will be mounted here -->
-        <div class="animate-pulse flex flex-col space-y-4">
-            <div class="h-4 bg-gray-200 rounded w-3/4"></div>
-            <div class="h-4 bg-gray-200 rounded w-1/2"></div>
-            <div class="h-4 bg-gray-200 rounded w-5/6"></div>
-            <div class="h-4 bg-gray-200 rounded w-2/3"></div>
-            <div class="h-4 bg-gray-200 rounded w-3/4"></div>
-        </div>
-    </div>
-</template>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize workflow diagram interactivity
-        function initWorkflowDiagram() {
-            const workflowDiagrams = document.querySelectorAll('.workflow-diagram');
-            
-            workflowDiagrams.forEach(diagram => {
-                // Add click to zoom functionality
-                diagram.addEventListener('click', function() {
-                    if (this.classList.contains('zoomed')) {
-                        this.classList.remove('zoomed');
-                        this.style.transform = '';
-                        this.style.cursor = 'zoom-in';
-                        this.style.maxWidth = '100%';
-                    } else {
-                        this.classList.add('zoomed');
-                        this.style.transform = 'scale(1.4)';
-                        this.style.cursor = 'zoom-out';
-                        this.style.maxWidth = '140%';
-                    }
-                });
-                
-                // Set initial cursor
-                diagram.style.cursor = 'zoom-in';
-            });
-        }
-        
-        // Call after tab content is loaded
-        const tabButtons = document.querySelectorAll('.tab-button');
-        tabButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Let tab content load first
-                setTimeout(initWorkflowDiagram, 500);
-            });
-        });
-        
-        // Initial call
-        setTimeout(initWorkflowDiagram, 1000);
-    });
-</script>
-<script>
-    // Create a check for the workflow diagram image
-    document.addEventListener('DOMContentLoaded', function() {
-        // Function to handle image error
-        function handleImageError(event) {
-            console.error('Error loading image:', event.target.src);
-            event.target.outerHTML = `
-                <div class="p-4 border border-red-200 bg-red-50 rounded text-center">
-                    <p class="text-red-600">
-                        <strong>Image not found:</strong> ${event.target.src}
-                    </p>
-                    <p class="text-gray-600 mt-2">
-                        Please ensure the image exists at the specified path or create the following directories:
-                        <br><code>/static/images/</code>
-                    </p>
-                </div>
-            `;
-        }
-        
-        // Add error handler to all workflow diagrams
-        document.querySelectorAll('.workflow-diagram').forEach(img => {
-            img.addEventListener('error', handleImageError);
-        });
-    });
-</script>
 </body>
 </html>

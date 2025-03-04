@@ -149,7 +149,7 @@
   
   <!-- Team Productivity Comparison -->
   <rect x="50" y="585" width="800" height="115" rx="10" ry="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" />
-  <text x="450" y="610" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#1e40af">Developer Productivity Comparison</text>
+  <text x="450" y="610" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#1e40af">Typical Productivity Comparison (5-Person Team)</text>
   
   <!-- Traditional Productivity -->
   <rect x="100" y="630" width="300" height="60" rx="5" ry="5" fill="#dbeafe" />
@@ -159,7 +159,7 @@
   <!-- AI-First Productivity -->
   <rect x="500" y="630" width="300" height="60" rx="5" ry="5" fill="#bfdbfe" />
   <text x="650" y="650" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e40af">AI-First Development</text>
-  <text x="650" y="675" font-family="Arial" font-size="14" text-anchor="middle" fill="#334155">12k LOC/day (300k LOC/day average raw speed)</text>
+  <text x="650" y="675" font-family="Arial" font-size="14" text-anchor="middle" fill="#334155">12k LOC/day (300k average raw speed)</text>
   
   <!-- Comparison arrow -->
   <line x1="410" y1="660" x2="490" y2="660" stroke="#94a3b8" stroke-width="2" />

@@ -1,4 +1,4 @@
-// Main application JavaScript
+// Main application JavaScript - UPDATED VERSION
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize app
     initApp();
@@ -29,14 +29,26 @@ async function initApp() {
     document.getElementById('tab-executive').click();
 }
 
-// Tab navigation setup
+// Tab navigation setup - Make globally accessible
 function setupTabs() {
+    console.log('Setting up tabs');
     const tabs = document.querySelectorAll('.tab-button');
     
+    // Remove existing click event listeners from all tabs
     tabs.forEach(tab => {
+        const oldTab = tab;
+        const newTab = oldTab.cloneNode(true);
+        if (oldTab.parentNode) {
+            oldTab.parentNode.replaceChild(newTab, oldTab);
+        }
+    });
+    
+    // Now add fresh event listeners to all tabs
+    const refreshedTabs = document.querySelectorAll('.tab-button');
+    refreshedTabs.forEach(tab => {
         tab.addEventListener('click', () => {
             // Update active tab styling
-            tabs.forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             
             // Get tab ID and load content
@@ -96,6 +108,7 @@ function initImplementationTab() {
     }, 100);
 }
 
+
 // Load tab content based on tab ID
 function loadTabContent(tabId) {
     const contentArea = document.getElementById('tab-content');
@@ -106,6 +119,12 @@ function loadTabContent(tabId) {
     // Get template for this tab
     const template = document.getElementById(`${tabId}-template`);
     if (!template) {
+        // If using the sources tab and there's a loadSourcesContent function, call it
+        if (tabId === 'sources' && typeof loadSourcesContent === 'function') {
+            loadSourcesContent();
+            return;
+        }
+        
         contentArea.innerHTML = `<div class="p-8 text-center">No template found for tab: ${tabId}</div>`;
         return;
     }
@@ -117,8 +136,8 @@ function loadTabContent(tabId) {
     // Initialize tab-specific content
     switch (tabId) {
         case 'executive':
-  	    initExecutiveSummaryTab();
-  	    break;
+            initExecutiveSummaryTab();
+            break;
         case 'overview':
             initOverviewTab();
             break;
@@ -132,7 +151,21 @@ function loadTabContent(tabId) {
             initComparisonTab();
             break;
         case 'workflows':
-            initWorkflowsTab();
+            // Now using the unified Mermaid handler
+            if (typeof window.initWorkflowDiagrams === 'function') {
+                window.initWorkflowDiagrams();
+            } else {
+                console.error('initWorkflowDiagrams function not found. Make sure unified-mermaid.js is loaded.');
+            }
+            break;
+        case 'sources':
+            // Use the external sources content loader if available
+            if (typeof loadSourcesContent === 'function') {
+                loadSourcesContent();
+            } else {
+                // Fallback to internal loader
+                loadSourcesTab();
+            }
             break;
     }
 }
@@ -159,15 +192,15 @@ async function loadMarkdown() {
 async function loadDiagrams() {
     try {
         // Load traditional workflow
-        const traditionalResponse = await fetch('/api/files/traditional-workflow.mermaid');
+        const traditionalResponse = await fetch('/api/files/traditional-workflow.txt');
         appData.diagrams.traditional = await traditionalResponse.text();
         
         // Load AI-assisted workflow
-        const aiAssistedResponse = await fetch('/api/files/ai-assisted-workflow.mermaid');
+        const aiAssistedResponse = await fetch('/api/files/ai-assisted-workflow.txt');
         appData.diagrams.aiAssisted = await aiAssistedResponse.text();
         
         // Load AI-first workflow
-        const aiFirstResponse = await fetch('/api/files/ai-first-workflow.mermaid');
+        const aiFirstResponse = await fetch('/api/files/ai-first-workflow.txt');
         appData.diagrams.aiFirst = await aiFirstResponse.text();
     } catch (error) {
         console.error('Error loading diagrams:', error);
@@ -229,6 +262,7 @@ function initOverviewTab() {
         });
     }
 }
+
 // Initialize dashboard tab with charts
 function initDashboardTab() {
     // Use Recharts if available, otherwise fallback to D3
@@ -768,44 +802,6 @@ const ProductivityChart = React.createElement(ResponsiveContainer, { width: "100
     }
 }
 
-// Initialize workflows tab
-function initWorkflowsTab() {
-    try {
-        // Initialize mermaid
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'default',
-            securityLevel: 'loose',
-            flowchart: { 
-                useMaxWidth: true,
-                htmlLabels: true,
-                curve: 'basis'
-            }
-        });
-        
-        // Set diagram content
-        if (appData.diagrams.traditional) {
-            document.getElementById('traditional-workflow').textContent = appData.diagrams.traditional;
-        }
-        
-        if (appData.diagrams.aiAssisted) {
-            document.getElementById('ai-assisted-workflow').textContent = appData.diagrams.aiAssisted;
-        }
-        
-        if (appData.diagrams.aiFirst) {
-            document.getElementById('ai-first-workflow').textContent = appData.diagrams.aiFirst;
-        }
-        
-        // Render diagrams
-        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
-    } catch (error) {
-        console.error('Error initializing mermaid diagrams:', error);
-        document.querySelectorAll('.mermaid').forEach(el => {
-            el.innerHTML = `<div class="p-4 text-red-500">Error rendering diagram: ${error.message}</div>`;
-        });
-    }
-}
-
 // Simple D3 bar chart function
 function renderSimpleBarChart(selector, data, yLabel) {
     const container = document.querySelector(selector);
@@ -1065,118 +1061,6 @@ function renderSimplePieChart(selector, data, label) {
         .attr('font-size', '14px')
         .text(label);
 }
-// Update app.js to include the sources tab
-
-// Add a new tab button to the tabs-container div in index.html
-function addSourcesTab() {
-  // Find the tabs container
-  const tabsContainer = document.querySelector('.tabs-container');
-  if (!tabsContainer) {
-    console.error('Tabs container not found');
-    return;
-  }
-  
-  // Create the new tab button
-  const sourcesTabButton = document.createElement('button');
-  sourcesTabButton.id = 'tab-sources';
-  sourcesTabButton.className = 'tab-button';
-  sourcesTabButton.setAttribute('data-tab', 'sources');
-  sourcesTabButton.textContent = 'Sources';
-  
-  // Add the button to the tabs container
-  tabsContainer.appendChild(sourcesTabButton);
-  
-  // Add click event listener to the new tab
-  sourcesTabButton.addEventListener('click', () => {
-    // Update active tab styling
-    document.querySelectorAll('.tab-button').forEach(t => t.classList.remove('active'));
-    sourcesTabButton.classList.add('active');
-    
-    // Load the sources tab content
-    loadSourcesTab();
-  });
-  
-  console.log('Sources tab button added');
-}
-
-// Function to load the sources tab content
-function loadSourcesTab() {
-  const contentArea = document.getElementById('tab-content');
-  if (!contentArea) {
-    console.error('Tab content area not found');
-    return;
-  }
-  
-  // Clear current content
-  contentArea.innerHTML = '';
-  
-  // Get sources template
-  const template = document.getElementById('sources-template');
-  if (!template) {
-    contentArea.innerHTML = '<div class="p-8 text-center">Sources template not found</div>';
-    return;
-  }
-  
-  // Clone template content
-  const content = template.content.cloneNode(true);
-  contentArea.appendChild(content);
-  
-  console.log('Sources tab content loaded');
-  
-  // Add search functionality for sources
-  addSourcesSearch();
-}
-
-// Add search functionality for sources
-function addSourcesSearch() {
-  // Create search input if it doesn't already exist
-  if (!document.getElementById('sources-search')) {
-    const firstCard = document.querySelector('.card');
-    if (!firstCard) return;
-    
-    const searchContainer = document.createElement('div');
-    searchContainer.className = 'mb-6';
-    searchContainer.innerHTML = `
-      <div class="flex items-center border rounded-lg p-2 bg-white shadow-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400 mr-2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-        </svg>
-        <input id="sources-search" type="text" placeholder="Search sources..." class="w-full outline-none text-gray-700" />
-      </div>
-    `;
-    
-    firstCard.parentNode.insertBefore(searchContainer, firstCard);
-    
-    // Add event listener for search input
-    const searchInput = document.getElementById('sources-search');
-    searchInput.addEventListener('input', function() {
-      const searchTerm = this.value.toLowerCase();
-      const sourceItems = document.querySelectorAll('.source-item');
-      
-      sourceItems.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        if (text.includes(searchTerm)) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-      
-      // Show/hide section headers based on visible items
-      document.querySelectorAll('.card').forEach(card => {
-        const visibleItems = card.querySelectorAll('.source-item[style="display: block"]').length;
-        const hiddenItems = card.querySelectorAll('.source-item[style="display: none"]').length;
-        const totalItems = visibleItems + hiddenItems;
-        
-        if (visibleItems === 0 && totalItems > 0) {
-          card.style.display = 'none';
-        } else {
-          card.style.display = 'block';
-        }
-      });
-    });
-  }
-}
 
 // Initialize executive summary tab
 function initExecutiveSummaryTab() {
@@ -1428,79 +1312,154 @@ function initExecutiveSummaryTab() {
         ReactDOM.render(React.createElement(InlineExecutiveSummary), container);
     }
 }
+
 // Update the setupTabs function to include sources tab initialization
 function updateSetupTabs() {
-  // Modify setupTabs if it exists
-  if (typeof setupTabs === 'function') {
-    const originalSetupTabs = setupTabs;
-    window.setupTabs = function() {
-      originalSetupTabs();
-      addSourcesTab();
-    };
-  } 
-  // Otherwise, just add our tab directly
-  else {
-    document.addEventListener('DOMContentLoaded', addSourcesTab);
+    // Add the sources tab
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            addSourcesTab();
+        }, 500);
+    });
+    
+    // Make sure setupTabs is available globally
+    window.setupTabs = setupTabs;
+}
+
+// Add the Sources tab to navigation
+function addSourcesTab() {
+    // Find the tabs container
+    const tabsContainer = document.querySelector('.tabs-container');
+    if (!tabsContainer) {
+        console.error('Tabs container not found');
+        return;
+    }
+    
+    // Check if the tab already exists
+    if (document.getElementById('tab-sources')) {
+        console.log('Sources tab already exists');
+        return;
+    }
+    
+    // Create the new tab button
+    const sourcesTabButton = document.createElement('button');
+    sourcesTabButton.id = 'tab-sources';
+    sourcesTabButton.className = 'tab-button';
+    sourcesTabButton.setAttribute('data-tab', 'sources');
+    sourcesTabButton.textContent = 'Sources';
+    
+    // Add the button to the tabs container
+    tabsContainer.appendChild(sourcesTabButton);
+    
+    // Re-initialize all tabs
+    setupTabs();
+    
+    console.log('Sources tab button added');
+}
+
+// Function to load the sources tab content
+function loadSourcesTab() {
+    const contentArea = document.getElementById('tab-content');
+    if (!contentArea) {
+      console.error('Tab content area not found');
+      return;
+    }
+    
+    // Clear current content
+    contentArea.innerHTML = '';
+    
+    // Get sources template
+    const template = document.getElementById('sources-template');
+    if (template) {
+      // Clone template content
+      const content = template.content.cloneNode(true);
+      contentArea.appendChild(content);
+      
+      console.log('Sources tab content loaded from template');
+    } else {
+      // Use embedded HTML if the template is not found
+      contentArea.innerHTML = `
+        <div class="flex flex-col gap-6 sources-tab">
+            <div class="text-center mb-4">
+                <h1 class="text-2xl font-bold">Sources & References</h1>
+                <p class="text-lg text-gray-600">Academic and industry sources supporting AI-First development methodologies</p>
+            </div>
+  
+            <div class="mb-6">
+              <div class="flex items-center border rounded-lg p-2 bg-white shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400 mr-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+                <input id="sources-search" type="text" placeholder="Search sources..." class="w-full outline-none text-gray-700" />
+              </div>
+            </div>
+  
+            <!-- Research Studies & Industry Reports -->
+            <div class="card">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-4">Research Studies & Industry Reports</h2>
+                    <div class="space-y-4">
+                        <!-- Sources go here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+      `;
+      
+      console.log('Sources tab content loaded from embedded HTML');
+    }
+    
+    // Add search functionality
+    setTimeout(addSourcesSearch, 200);
+}
+
+// Add search functionality for sources
+function addSourcesSearch() {
+  // Create search input if it doesn't already exist
+  const searchInput = document.getElementById('sources-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const sourceItems = document.querySelectorAll('.source-item');
+      
+      sourceItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      // Show/hide sections based on content
+      document.querySelectorAll('.card').forEach(card => {
+        const visibleItems = card.querySelectorAll('.source-item[style="display: block"]').length;
+        const hiddenItems = card.querySelectorAll('.source-item[style="display: none"]').length;
+        const totalItems = visibleItems + hiddenItems;
+        
+        if (visibleItems === 0 && totalItems > 0) {
+          card.style.display = 'none';
+        } else {
+          card.style.display = 'block';
+        }
+      });
+    });
   }
 }
 
 // Run this script to update the app with sources tab
 updateSetupTabs();
 
-function initImplementationTab() {
-    // Replace the default Multi-LLM content with our custom content
-    const multiLlmContainer = document.querySelector('.card:nth-child(2)');
-    if (multiLlmContainer) {
-        // Load the custom Multi-LLM template
-        fetch('/static/templates/multi-llm-template.html')
-            .then(response => response.text())
-            .then(html => {
-                multiLlmContainer.outerHTML = html;
-            })
-            .catch(error => {
-                console.error('Error loading Multi-LLM template:', error);
-                // Fallback: Use embedded template if fetch fails
-                const multiLlmTemplate = `
-                    <!-- Multi-LLM Systems Template -->
-                    <div class="card">
-                        <div class="p-6">
-                            <h2 class="text-xl font-semibold mb-3">Multi-LLM Systems: Parallel & Series Architectures</h2>
-                            <p class="text-gray-700 mb-4">
-                                Advanced AI-first development leverages multiple LLMs working together to maximize both throughput and quality,
-                                creating systems that are more powerful than any single model working alone.
-                            </p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <!-- Parallel LLM Architecture -->
-                                <div class="border rounded-lg p-4 bg-blue-50">
-                                    <h3 class="text-lg font-semibold mb-2">Parallel Architecture</h3>
-                                    <p class="text-gray-700 mb-2">
-                                        Multiple LLMs working simultaneously on different tasks to maximize throughput.
-                                    </p>
-                                    <ul class="list-disc pl-5 space-y-1 mb-3">
-                                        <li>Process N times as many tasks with N models</li>
-                                        <li>Develop different system aspects concurrently</li>
-                                        <li>Leverage domain-specialized models</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Series LLM Architecture -->
-                                <div class="border rounded-lg p-4 bg-blue-50">
-                                    <h3 class="text-lg font-semibold mb-2">Series Architecture</h3>
-                                    <p class="text-gray-700 mb-2">
-                                        Multiple LLMs in sequence, each improving the output of previous stages.
-                                    </p>
-                                    <ul class="list-disc pl-5 space-y-1 mb-3">
-                                        <li>Refinement chains improve quality</li>
-                                        <li>Critique & revision cycles</li>
-                                        <li>Prompt refinement for better results</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                multiLlmContainer.outerHTML = multiLlmTemplate;
-            });
-    }
-}
+window.addEventListener('load', function() {
+  // Make sure mermaid is initialized only once
+  if (typeof mermaid !== 'undefined' && typeof window.mermaidInitialized === 'undefined') {
+    window.mermaidInitialized = true;
+    
+    console.log('Initializing Mermaid from app.js');
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: document.body.classList.contains('dark-theme') ? 'dark' : 'default',
+      securityLevel: 'loose'
+    });
+  }
+});
